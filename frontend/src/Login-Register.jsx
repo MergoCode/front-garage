@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,10 @@ const Login_Register = () => {
     }
 
     const handleLogin = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
+        if (!isValid) {
+            console.error("You cannot login with that parameters!");
+        } else if (isValid) { 
         try {
             const response = await axios.post("http://localhost:8000/api/login/", 
                 {
@@ -42,18 +45,19 @@ const Login_Register = () => {
                 localStorage.setItem("refreshToken", response.data.refresh);
                 navigate("/home");
             }
+        
             
         } catch (err) {
             console.log("Error with login: ", err); 
         }
         
-    }
+    }};
 
     const handleRegister = async (event) => {
         event.preventDefault(); 
         if (!isValid) {
-            exit(1);
-        } else {
+            console.error("You cannot register with that parameters!");
+        } else if (isValid){
         try {
             const response = await axios.post("http://localhost:8000/api/register/", {
                 "username": username,
@@ -90,27 +94,40 @@ const Login_Register = () => {
             
             if (username === password && username != "") {
                 console.error("Login cannot be same as password!");
+                setIsValid(0);
+
             }
             else if (username.length > 30) {
                 console.error("Username cannot be longer than 30 symbols");
+                setIsValid(0);
+
             }
             else if (password.length < 8 || password.length > 30) {
                 console.error("Password cannot be shorter than 8 symbols or longer than 30 symbols");
+                setIsValid(0);
+
             }
             else if (password === password.toLowerCase() || password === password.toUpperCase()) {
                 console.error("You need to have at least one lowercase and one uppercase symbol in your password!");
+                setIsValid(0);
+
             }
             else if (countDigits(password) == 0) {
                 console.error("Your password needs to contain at least one number");
+                setIsValid(0);
+
             }
             else if (!isLatinDigitOrSpecial(password)) {
                 console.error("Your password needs to be written in Latin!");
+                setIsValid(0);
+
             }
             
             else {
                 setIsValid(1);
+                
             }
-        }, 2000); 
+        }, 1000); 
     
         return () => clearTimeout(timer); 
     }, [username, password]);

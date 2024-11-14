@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 const Login_Register = () => {
     const [pageChoice, setPageChoice] = useState('login');
     const [fetchError, setFetchError] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState("Weak");
     const navigate = useNavigate();
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,30}$/; // Мінімум одна велика буква, маленька буква, цифра і спецсимвол
@@ -83,10 +84,34 @@ const Login_Register = () => {
         }
     }, [username, password]);
 
+        // складність пароля
+        useEffect(() => {
+            if (pageChoice === "register") { 
+                if (password.length > 10 && /(?=.*[A-Z])(?=.*[!@#$%^&*])/.test(password)) {
+                    setPasswordStrength("Strong");
+                } else if (password.length > 6) {
+                    setPasswordStrength("Middle");
+                } else if(password.length == 0){
+                    setPasswordStrength("");
+                } else {
+                    setPasswordStrength("Weak");
+                }
+            }
+        }, [password, pageChoice]);
+
     return (
+        <div className="login-register-page">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-4"></div>
         <div className="container">
+            <div class="welcome-section">
+                <h2>WELCOME</h2>
+                <h3>SIGN UP</h3>
+            </div>
             {pageChoice === "login" ? (
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
                     <input
                         type="text"
                         placeholder="Username"
@@ -111,10 +136,14 @@ const Login_Register = () => {
                     />
                     {errors.password && <p>{errors.password.message}</p>}
 
-                    <button type="submit" disabled={!isValid}>Login</button>
+                    <button className="login-btn" type="submit" disabled={!isValid}>Login</button>
                 </form>
             ) : (
-                <form onSubmit={handleSubmit(handleRegister)}>
+                <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
+
+                    {/* складність пароля */}
+                    {passwordStrength && <p>Safety of password: {passwordStrength}</p>}    
+
                     <input
                         type="text"
                         placeholder="Username"
@@ -147,13 +176,14 @@ const Login_Register = () => {
                     />
                     {errors.email && <p>{errors.email.message}</p>}
 
-                    <button type="submit" disabled={!isValid}>Register</button>
+                    <button className="register-btn" type="submit" disabled={!isValid}>Register</button>
                 </form>
             )}
             
-            <button onClick={handleChangePage}>Change</button>
+            <button onClick={handleChangePage} className="change-btn"><img src='./public/switch-btn.svg'></img></button>
             {fetchError && fetchError !== '' && <p>{fetchError}</p>}
 
+        </div>
         </div>
     );
 };

@@ -63,6 +63,7 @@
 .circle {
   position: absolute;
   border-radius: 50%;
+  filter: blur(18px);
   transition: transform 1s ease-in-out;
 }
 
@@ -187,6 +188,7 @@
   text-decoration-skip-ink: none;
   color: #000;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .form-container {

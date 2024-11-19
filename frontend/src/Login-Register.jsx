@@ -18,8 +18,6 @@ const Login_Register = () => {
     const circle2Ref = useRef(null);
     const circle3Ref = useRef(null);
     const circle4Ref = useRef(null);
-
-   
     const formContainerRef = useRef(null);
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,30}$/; // Мінімум одна велика буква, маленька буква, цифра і спецсимвол
 
@@ -57,13 +55,12 @@ const Login_Register = () => {
                     const buttonPosition = containerWidth - 2 * blockWidth - 0.5 * buttonWidth;
                     const newButtonPosition = buttonWidth / 2;
 
-                    console.log(containerWidth, '\n', blockWidth, '\n', maxPosition, '\n', buttonPosition, buttonWidth);
                     block.style.transform = `translateX(${maxPosition}px)`;
                     buttonChange.style.transform = `translateX(${buttonPosition}px) rotate(180deg)`;
                     if (circle1Ref.current) circle1Ref.current.style.transform = "translateX(50px)";
-                    if (circle2Ref.current) circle2Ref.current.style.transform = "translateX(100px)";
-                    if (circle3Ref.current) circle3Ref.current.style.transform = "translateX(-50px)";
-                    if (circle4Ref.current) circle4Ref.current.style.transform = "translateX(-100px)";
+                    if (circle2Ref.current) circle2Ref.current.style.transform = "translateX(-100px)";
+                    if (circle3Ref.current) circle3Ref.current.style.transform = "translateX(50px)";
+                    if (circle4Ref.current) circle4Ref.current.style.transform = "translateX(100px)";
 
                     formContainer.style.tranform = `translateX(-${newButtonPosition}px)`;
 
@@ -78,7 +75,6 @@ const Login_Register = () => {
                     const buttonPosition = maxPosition - blockWidth;
                     const buttonWidth = buttonChange.offsetWidth;
                     const newButtonPosition = buttonWidth / 2;
-                    console.log(buttonWidth,newButtonPosition);
                     block.style.transform = `translateX(0)`;
                     buttonChange.style.transform = `translateX(-${newButtonPosition}px)`;
                    
@@ -149,6 +145,7 @@ const Login_Register = () => {
     };
 
     const handleLogin = async (data) => {
+        console.log("button clicked");
         try {
             const response = await axios.post("http://localhost:8000/api/login/", 
                 {
@@ -186,7 +183,7 @@ const Login_Register = () => {
                 { headers: { 'Content-Type': 'application/json' } }
             );
             console.log("Registered successfully!");
-            setPageChoice('login');
+            handleChangePage();
         } catch (err) {
 
             console.log("Error with register:", err);
@@ -231,8 +228,11 @@ const Login_Register = () => {
             </div>
             <button onClick={handleChangePage} className="change-btn" ref={changeButtonRef}><img src='./public/switch-btn.svg'></img></button>
         <div className={`form-container ${fadeState} d-flex align-items-center col-8`} ref={formContainerRef}>
+
             {pageChoice === "login" ? (
                 <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+                    {fetchError && fetchError !== '' && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
+
                     <input
                         type="text"
                         placeholder="Username"
@@ -261,6 +261,7 @@ const Login_Register = () => {
                 </form>
             ) : (
                 <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
+                {fetchError && fetchError !== '' && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
 
                     {/* складність пароля */}
                     {passwordStrength && <p>Safety of password: {passwordStrength}</p>}    
@@ -300,8 +301,9 @@ const Login_Register = () => {
                     <button className="register-btn" type="submit" disabled={!isValid}>Register</button>
                 </form>
             )}
+
             </div>
-            {fetchError && fetchError !== '' && <p>{fetchError}</p>}
+            
 
         </div>
         </div>

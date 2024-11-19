@@ -225,13 +225,7 @@
   
 }
 
-.change-btn:hover {
-  will-change: transform;
 
-  transform: translateX(-50%)  rotate(15deg); /* Додаємо обертання до існуючої трансформації */
-  transform-origin: center;
-
-}
 .login-register-page form {
   width: 100%;
   display: flex;

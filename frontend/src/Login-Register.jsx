@@ -103,7 +103,7 @@ const Login_Register = () => {
             const handleFormContainerMove = (ifLogin) => {
                 const containerWidth = container.offsetWidth;
                 const blockWidth = block.offsetWidth;
-                const newFormContainerPosition = blockWidth / 1.2;
+                const newFormContainerPosition = blockWidth;
                 if (ifLogin) {
                     formContainer.style.transform = `translateX(-${newFormContainerPosition}px)`;
                 }
@@ -230,7 +230,7 @@ const Login_Register = () => {
 
             </div>
             <button onClick={handleChangePage} className="change-btn" ref={changeButtonRef}><img src='./public/switch-btn.svg'></img></button>
-        <div className={`form-container ${fadeState} d-flex  align-items-center`} ref={formContainerRef}>
+        <div className={`form-container ${fadeState} d-flex align-items-center col-8`} ref={formContainerRef}>
             {pageChoice === "login" ? (
                 <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
                     <input

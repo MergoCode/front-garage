@@ -19,7 +19,7 @@ const Login_Register = () => {
     const circle3Ref = useRef(null);
     const circle4Ref = useRef(null);
     const formContainerRef = useRef(null);
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,30}$/; // Мінімум одна велика буква, маленька буква, цифра і спецсимвол
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,30}$/; // Мінімум одна велика буква, маленька буква, цифра і спецсимвол
 
     const {
         register,

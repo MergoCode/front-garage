@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,7 @@ const Login_Register = () => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors, isValid }
     } = useForm({
         mode: "onChange", 
@@ -34,6 +35,8 @@ const Login_Register = () => {
             email: '',
         }
     });
+
+    
 
     const password = watch("password");
     const username = watch("username");
@@ -69,15 +72,11 @@ const Login_Register = () => {
             }
     const resetBlock = () => {
                 if (block) {
-                    const containerWidth = container.offsetWidth;
-                    const blockWidth = block.offsetWidth;
-                    const maxPosition = containerWidth - blockWidth;
-                    const buttonPosition = maxPosition - blockWidth;
                     const buttonWidth = buttonChange.offsetWidth;
                     const newButtonPosition = buttonWidth / 2;
                     block.style.transform = `translateX(0)`;
                     buttonChange.style.transform = `translateX(-${newButtonPosition}px)`;
-                   
+                    console.log(buttonWidth, newButtonPosition);
                     if (circle1Ref.current) circle1Ref.current.style.transform = "translateX(0)";
                     if (circle2Ref.current) circle2Ref.current.style.transform = "translateX(0)";
                     if (circle3Ref.current) circle3Ref.current.style.transform = "translateX(0)";
@@ -92,12 +91,11 @@ const Login_Register = () => {
                 setFadeSignState(true); // Активуємо фейд-аут
                 setTimeout(() => {
                   setSignText(newText); // Змінюємо текст після завершення фейд-ауту
-                  setFadeSignState(false); // Вмикаємо фейд-ін
-                }, 500); // Час повинен збігатися з тривалістю анімації в CSS
+                  setFadeSignState(false); 
+                }, 500); 
               };
 
             const handleFormContainerMove = (ifLogin) => {
-                const containerWidth = container.offsetWidth;
                 const blockWidth = block.offsetWidth;
                 const newFormContainerPosition = blockWidth;
                 if (ifLogin) {
@@ -116,6 +114,7 @@ const Login_Register = () => {
         }
 
 
+    
     const handleChangePage = () => {
         setFadeState("fade-out");
 
@@ -127,7 +126,7 @@ const Login_Register = () => {
             handleFade('SIGN UP');
             handleFadeForm();
             moveBlock();
-             // У moveBlock
+            reset();
 
         }
         else {
@@ -140,6 +139,8 @@ const Login_Register = () => {
             handleFade('SIGN IN');  
             handleFadeForm();
             resetBlock();
+            reset();
+
         }
         
     };
@@ -174,7 +175,7 @@ const Login_Register = () => {
     const handleRegister = async (data) => {
         try {
             console.log(data);
-            const response = await axios.post("http://localhost:8000/api/register/", 
+            await axios.post("http://localhost:8000/api/register/", 
                 {
                     username: data.username,
                     password: data.password,
@@ -196,7 +197,6 @@ const Login_Register = () => {
         }
     }, [username, password]);
 
-        // складність пароля
         useEffect(() => {
             if (pageChoice === "register") { 
                 if (password.length > 10 && /(?=.*[A-Z])(?=.*[!@#$%^&*])/.test(password)) {
@@ -211,16 +211,19 @@ const Login_Register = () => {
             }
         }, [password, pageChoice]);
 
+    
+        
+    
     return (
         <div className="login-register-page">
-                <div class="circle circle-1" ref={circle1Ref} ></div>
+                <div className="circle circle-1" ref={circle1Ref} ></div>
                 
-                <div class="circle circle-2" ref={circle2Ref} ></div>
-                <div class="circle circle-3" ref={circle3Ref}></div>
-                <div class="circle circle-4" ref={circle4Ref}></div>
+                <div className="circle circle-2" ref={circle2Ref} ></div>
+                <div className="circle circle-3" ref={circle3Ref}></div>
+                <div className="circle circle-4" ref={circle4Ref}></div>
                 
-        <div className="container ps-0" ref={containerRef}>
-            <div class="welcome-section text-center col-4 align-items-center" id="welcome-id" ref={movingRef}>
+        <div className="container ps-0 d-flex justify-content-center col-8" ref={containerRef}>
+            <div className="welcome-section text-center col-4 align-items-center" id="welcome-id" ref={movingRef}>
                 <h2></h2>
                 <h3 className={`fade-sign ${fadeSignState ? "fade-out" : "fade-in"}`}>{signText}</h3>
                 
@@ -237,7 +240,7 @@ const Login_Register = () => {
                         type="text"
                         placeholder="Username"
                         {...register("username", { required: "Username is required" })}
-                        className="login-register-input"
+                        className="login-register-input col-4"
                     />
                     {errors.username && <p>{errors.username.message}</p>}
 
@@ -250,14 +253,14 @@ const Login_Register = () => {
                             maxLength: { value: 30, message: "Password cannot exceed 30 characters" },
                             pattern: {
                                 value: passwordRegex,
-                                message: "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
+                                message: "Password is invalid"
                             }
                         })}
-                        className="login-register-input"
+                        className="login-register-input col-4"
                     />
                     {errors.password && <p>{errors.password.message}</p>}
 
-                    <button className="login-btn" type="submit" disabled={!isValid}>Login</button>
+                    <button className={`login-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Login</button>
                 </form>
             ) : (
                 <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
@@ -270,7 +273,7 @@ const Login_Register = () => {
                         type="text"
                         placeholder="Username"
                         {...register("username", { required: "Username is required" })}
-                        className="login-register-input"
+                        className="login-register-input col-4"
                     />
                     {errors.username && <p>{errors.username.message}</p>}
 
@@ -286,7 +289,7 @@ const Login_Register = () => {
                                 message: "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
                             }
                         })}
-                        className="login-register-input"
+                        className="login-register-input col-4"
                     />
                     {errors.password && <p>{errors.password.message}</p>}
 
@@ -294,11 +297,11 @@ const Login_Register = () => {
                         type="email"
                         placeholder="Email"
                         {...register("email", { required: "Email is required" })}
-                        className="login-register-input"
+                        className="login-register-input col-4"
                     />
                     {errors.email && <p>{errors.email.message}</p>}
 
-                    <button className="register-btn" type="submit" disabled={!isValid}>Register</button>
+                    <button className={`register-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Register</button>
                 </form>
             )}
 

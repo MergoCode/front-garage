@@ -232,7 +232,7 @@ const Login_Register = () => {
                 <div className="circle circle-3" ref={circle3Ref}></div>
                 <div className="circle circle-4" ref={circle4Ref}></div>
                 
-        <div className="container login-register__container ps-0 d-flex justify-content-center col-8" ref={containerRef}>
+        <div className="container login-register-container ps-0 d-flex justify-content-center col-8" ref={containerRef}>
             <div className="welcome-section text-center col-4 align-items-center" id="welcome-id" ref={movingRef}>
                 <h2></h2>
                 <h3 className={`fade-sign ${fadeSignState ? "fade-out" : "fade-in"}`}>{signText}</h3>

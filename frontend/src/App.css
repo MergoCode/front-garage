@@ -231,6 +231,9 @@
   
 }
 
+
+
+
 .disabled-button {
   background-color: #6f4278 !important;
 }
@@ -240,8 +243,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Додаємо це, щоб вирівняти елементи */
-  gap: 1rem;
+  justify-content: space-between;
+  transition: all 1s ease-in-out; /* Додаємо це, щоб вирівняти елементи */
 }
 
 .login-register-page form p {

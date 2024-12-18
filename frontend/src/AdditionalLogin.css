@@ -1,0 +1,45 @@
+.passwordScale
+{    
+    height: 10px;
+    transition: background-color 1s ease-in-out, width 1s ease-in-out, opacity 1s ease-in-out;
+    border-radius: 5px;
+    text-align: start;
+    margin: 0;
+}
+
+p.passwordSafetyAnimation {
+    font-weight: 500;
+    transition: color 1s ease-in-out;
+}
+
+p.password-safety-1 {
+    color: red;
+}
+
+p.password-safety-2 {
+    color: yellow;
+}
+
+p.password-safety-3 {
+    color: green;
+}
+
+.strength-0{
+    background-color: red;
+    opacity: 0;
+}
+.strength-1{
+    opacity: 1;
+    background-color: red;
+}
+
+.strength-2{ 
+    opacity: 1;
+   
+    background-color: yellow;
+}
+.strength-3{
+    opacity: 1;
+
+    background-color: green;
+}

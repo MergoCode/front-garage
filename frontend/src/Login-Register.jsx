@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import "./AdditionalLogin.css";
 
 const Login_Register = () => {
     const [pageChoice, setPageChoice] = useState('login');
@@ -19,6 +20,7 @@ const Login_Register = () => {
     const circle3Ref = useRef(null);
     const circle4Ref = useRef(null);
     const formContainerRef = useRef(null);
+    const [scalePass, setScalePassword] = useState(1);
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,30}$/; // Мінімум одна велика буква, маленька буква, цифра і спецсимвол
 
     const {
@@ -26,6 +28,7 @@ const Login_Register = () => {
         handleSubmit,
         watch,
         reset,
+        trigger,
         formState: { errors, isValid }
     } = useForm({
         mode: "onChange", 
@@ -36,6 +39,9 @@ const Login_Register = () => {
         }
     });
 
+    useEffect(() => {
+        trigger();
+    }, [trigger])
     
 
     const password = watch("password");
@@ -153,15 +159,15 @@ const Login_Register = () => {
                     username: data.username,
                     password: data.password
                 },
-                {
+                /*{
                     headers: { 'Content-Type': "application/json" }
-                }
+                }*/
             );
             console.log("Log in completed successfully!");
             console.log(response.data);
             if (response.data.access) {
-                localStorage.setItem("accessToken", response.data.access);
-                localStorage.setItem("refreshToken", response.data.refresh);
+                sessionStorage.setItem("accessToken", response.data.access);
+                sessionStorage.setItem("refreshToken", response.data.refresh);
                 
                 navigate("/home");
             }
@@ -199,14 +205,18 @@ const Login_Register = () => {
 
         useEffect(() => {
             if (pageChoice === "register") { 
-                if (password.length > 10 && /(?=.*[A-Z])(?=.*[!@#$%^&*])/.test(password)) {
+                if (password.length > 10 && /(?=.*[A-Z])/.test(password)) {
                     setPasswordStrength("Strong");
+                    setScalePassword(3);
                 } else if (password.length > 6) {
                     setPasswordStrength("Middle");
+                    setScalePassword(2);
                 } else if(password.length == 0){
                     setPasswordStrength("");
+                    setScalePassword(0);
                 } else {
                     setPasswordStrength("Weak");
+                    setScalePassword(1);
                 }
             }
         }, [password, pageChoice]);
@@ -229,20 +239,20 @@ const Login_Register = () => {
                 
 
             </div>
-            <button onClick={handleChangePage} className="change-btn" ref={changeButtonRef}><img src='./public/switch-btn.svg'></img></button>
+            <button onClick={handleChangePage} className="change-btn" ref={changeButtonRef}><img src='./public/switch-btn.svg' className="col-9"></img></button>
         <div className={`form-container ${fadeState} d-flex align-items-center col-8`} ref={formContainerRef}>
 
             {pageChoice === "login" ? (
-                <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+                <form className="login-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleLogin)}>
                     {fetchError && fetchError !== '' && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
 
                     <input
                         type="text"
                         placeholder="Username"
                         {...register("username", { required: "Username is required" })}
-                        className="login-register-input col-4"
+                        className="login-register-input col-4 mb-1"
                     />
-                    {errors.username && <p>{errors.username.message}</p>}
+                    {errors.username && <p className="mb-1">{errors.username.message}</p>}
 
                     <input
                         type="password"
@@ -256,26 +266,25 @@ const Login_Register = () => {
                                 message: "Password is invalid"
                             }
                         })}
-                        className="login-register-input col-4"
+                        className="login-register-input col-4 mb-1"
                     />
-                    {errors.password && <p>{errors.password.message}</p>}
+                    {errors.password && <div className="error-div col-6 mb-1"><p>{errors.password.message}</p></div>}
 
                     <button className={`login-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Login</button>
                 </form>
             ) : (
-                <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
+                <form className="register-form  d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleRegister)}>
                 {fetchError && fetchError !== '' && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
 
-                    {/* складність пароля */}
-                    {passwordStrength && <p>Safety of password: {passwordStrength}</p>}    
+                   
 
                     <input
                         type="text"
                         placeholder="Username"
                         {...register("username", { required: "Username is required" })}
-                        className="login-register-input col-4"
+                        className="login-register-input col-4 mb-1"
                     />
-                    {errors.username && <p>{errors.username.message}</p>}
+                    {errors.username && <p className="mb-1 col-12">⚠︎ {errors.username.message}</p>}
 
                     <input
                         type="password"
@@ -286,21 +295,27 @@ const Login_Register = () => {
                             maxLength: { value: 30, message: "Password cannot exceed 30 characters" },
                             pattern: {
                                 value: passwordRegex,
-                                message: "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
+                                message: "Password must include at least one uppercase letter, one lowercase letter and one number"
                             }
                         })}
-                        className="login-register-input col-4"
+                        className="login-register-input col-4 mb-1"
                     />
-                    {errors.password && <p>{errors.password.message}</p>}
+                    {errors.password && <div className="error-div col-12 mb-1"><p>⚠︎ {errors.password.message}</p></div>}
 
                     <input
                         type="email"
                         placeholder="Email"
                         {...register("email", { required: "Email is required" })}
-                        className="login-register-input col-4"
+                        className="login-register-input col-4 mb-1"
                     />
-                    {errors.email && <p>{errors.email.message}</p>}
-
+                    {errors.email && <p className="mb-1 col-12">⚠︎ {errors.email.message}</p>}
+                    
+                    <div className="d-flex col-6 text-center mt-2">
+                    <div className={`passwordScale strength-${scalePass} col-${scalePass == 0 ? 1 : scalePass * 4} `}></div>
+                    </div>
+                    <div className="col-6  d-flex justify-content-start">
+                    <p className={`password-safety-${scalePass} passwordSafetyAnimation`}>{passwordStrength}</p>
+                    </div>
                     <button className={`register-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Register</button>
                 </form>
             )}

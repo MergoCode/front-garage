@@ -7,7 +7,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     const fetchRole = async () => {
-      const token = localStorage.getItem("accessToken");
+      const token = sessionStorage.getItem("accessToken");
       if (token) {
         try {
           const response = await axios.get("http://localhost:8000/api/role/", {  // використовуємо token для авторизації

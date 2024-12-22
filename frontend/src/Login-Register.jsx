@@ -190,6 +190,28 @@ const Login_Register = () => {
                 { headers: { 'Content-Type': 'application/json' } }
             );
             console.log("Registered successfully!");
+            try {
+                const response = await axios.post("http://localhost:8000/api/login/", 
+                    {
+                        username: data.username,
+                        password: data.password
+                    },
+                    /*{
+                        headers: { 'Content-Type': "application/json" }
+                    }*/
+                );
+                console.log("Log in completed successfully!");
+                console.log(response.data);
+                if (response.data.access) {
+                    sessionStorage.setItem("accessToken", response.data.access);
+                    sessionStorage.setItem("refreshToken", response.data.refresh);
+                    
+                    navigate("/home");
+                }
+
+            } catch (err) {
+                alert(err);
+            };
             handleChangePage();
         } catch (err) {
 

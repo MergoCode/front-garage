@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./AdditionalLogin.css";
-
+import api from "./AxiosSetting";
 const Login_Register = () => {
     const [pageChoice, setPageChoice] = useState('login');
     const [fetchError, setFetchError] = useState('');
@@ -154,7 +153,7 @@ const Login_Register = () => {
     const handleLogin = async (data) => {
         console.log("button clicked");
         try {
-            const response = await axios.post("http://localhost:8000/api/login/", 
+            const response = await api.post("/login/", 
                 {
                     username: data.username,
                     password: data.password
@@ -181,7 +180,7 @@ const Login_Register = () => {
     const handleRegister = async (data) => {
         try {
             console.log(data);
-            await axios.post("http://localhost:8000/api/register/", 
+            await api.post("/register/", 
                 {
                     username: data.username,
                     password: data.password,
@@ -190,28 +189,28 @@ const Login_Register = () => {
                 { headers: { 'Content-Type': 'application/json' } }
             );
             console.log("Registered successfully!");
-            try {
-                const response = await axios.post("http://localhost:8000/api/login/", 
-                    {
-                        username: data.username,
-                        password: data.password
-                    },
-                    /*{
-                        headers: { 'Content-Type': "application/json" }
-                    }*/
-                );
-                console.log("Log in completed successfully!");
-                console.log(response.data);
-                if (response.data.access) {
-                    sessionStorage.setItem("accessToken", response.data.access);
-                    sessionStorage.setItem("refreshToken", response.data.refresh);
+            // try {
+            //     const response = await axios.post("/login/", 
+            //         {
+            //             username: data.username,
+            //             password: data.password
+            //         },
+            //         /*{
+            //             headers: { 'Content-Type': "application/json" }
+            //         }*/
+            //     );
+            //     console.log("Log in completed successfully!");
+            //     console.log(response.data);
+            //     if (response.data.access) {
+            //         sessionStorage.setItem("accessToken", response.data.access);
+            //         sessionStorage.setItem("refreshToken", response.data.refresh);
                     
-                    navigate("/home");
-                }
+            //         navigate("/home");
+            //     }
 
-            } catch (err) {
-                alert(err);
-            };
+            // } catch (err) {
+            //     alert(err);
+            // };
             handleChangePage();
         } catch (err) {
 

@@ -28,7 +28,7 @@ const Login_Register = () => {
         watch,
         reset,
         trigger,
-        formState: { errors, isValid }
+        formState: { errors, isValid, isSubmitting }
     } = useForm({
         mode: "onChange", 
         defaultValues: {
@@ -86,9 +86,6 @@ const Login_Register = () => {
                     if (circle2Ref.current) circle2Ref.current.style.transform = "translateX(0)";
                     if (circle3Ref.current) circle3Ref.current.style.transform = "translateX(0)";
                     if (circle4Ref.current) circle4Ref.current.style.transform = "translateX(0)";
-                    
-
-                    
                 }
             }
 
@@ -151,19 +148,14 @@ const Login_Register = () => {
     };
 
     const handleLogin = async (data) => {
-        console.log("button clicked");
         try {
             const response = await api.post("/login/", 
                 {
                     username: data.username,
                     password: data.password
                 },
-                /*{
-                    headers: { 'Content-Type': "application/json" }
-                }*/
+                
             );
-            console.log("Log in completed successfully!");
-            console.log(response.data);
             if (response.data.access) {
                 sessionStorage.setItem("accessToken", response.data.access);
                 sessionStorage.setItem("refreshToken", response.data.refresh);
@@ -173,7 +165,6 @@ const Login_Register = () => {
         } catch (err) {
             const errorMessage = err.response?.data?.detail || err.message || "An error occurred during login";
         setFetchError(errorMessage);
-        console.log("Error with login: ", errorMessage);
         }
     };
 
@@ -189,28 +180,7 @@ const Login_Register = () => {
                 { headers: { 'Content-Type': 'application/json' } }
             );
             console.log("Registered successfully!");
-            // try {
-            //     const response = await axios.post("/login/", 
-            //         {
-            //             username: data.username,
-            //             password: data.password
-            //         },
-            //         /*{
-            //             headers: { 'Content-Type': "application/json" }
-            //         }*/
-            //     );
-            //     console.log("Log in completed successfully!");
-            //     console.log(response.data);
-            //     if (response.data.access) {
-            //         sessionStorage.setItem("accessToken", response.data.access);
-            //         sessionStorage.setItem("refreshToken", response.data.refresh);
-                    
-            //         navigate("/home");
-            //     }
-
-            // } catch (err) {
-            //     alert(err);
-            // };
+            
             handleChangePage();
         } catch (err) {
 
@@ -291,7 +261,7 @@ const Login_Register = () => {
                     />
                     {errors.password && <div className="error-div col-6 mb-1"><p>{errors.password.message}</p></div>}
 
-                    <button className={`login-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Login</button>
+                    <button className={`login-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid || isSubmitting }>{isSubmitting? "Loading..." : "Sign In"}</button>
                 </form>
             ) : (
                 <form className="register-form  d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleRegister)}>
@@ -337,7 +307,7 @@ const Login_Register = () => {
                     <div className="col-6  d-flex justify-content-start">
                     <p className={`password-safety-${scalePass} passwordSafetyAnimation`}>{passwordStrength}</p>
                     </div>
-                    <button className={`register-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid}>Register</button>
+                    <button className={`register-btn col-3 ${isValid ? `enabled-button`: `disabled-button`}`} type="submit" disabled={!isValid || isSubmitting}>{isSubmitting? "Loading..." : "Register"}</button>
                 </form>
             )}
 

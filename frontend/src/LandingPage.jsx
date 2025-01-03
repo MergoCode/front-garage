@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react"
-import axios from "axios";
-
+import api from "./AxiosSetting";
 const LandingPage = () => {
   const [loading, setLoading] = useState(true); 
   const [greeting, setGreeting] = useState('');
@@ -10,7 +9,7 @@ const LandingPage = () => {
       const token = sessionStorage.getItem("accessToken");
       if (token) {
         try {
-          const response = await axios.get("http://localhost:8000/api/role/", {  // використовуємо token для авторизації
+          const response = await api.get("/role/", {  // використовуємо token для авторизації
             headers: {
               Authorization: `Bearer ${token}`,
             },

@@ -1,13 +1,18 @@
-import React from "react";
+import { useNavigate } from "react-router";
 import "../css/Layout.css";
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    
+
     return(
         <div className="header">
             <nav className="container px-0 header-nav">
                 <a className="col-2 header-link" href="#">
                     <img src="src/assets/user-icon.svg" alt='Особистий кабінет'></img>Особистий кабінет</a>
 
-                <a className="col-2 header-link" href="/home">
+                    <a className="col-2 header__link" href="#" onClick={() => navigate("/home")}>
                 <img src="src/assets/home-icon.svg" alt='Головна сторінка'></img>Головна сторінка</a>
 
                 <a className="col-2 header-link" href="#">

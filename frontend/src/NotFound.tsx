@@ -12,8 +12,7 @@ const NotFoundPage: React.FC = () => {4
     const navigate = useNavigate();
     const inputRef = useRef<HTMLInputElement>(null);
     const incrementByAmount = useCounterStore((state) => state.incrementByAmount);
-    const baseURL = config.apiBaseUrl;
-
+    
 
     const handleRedirect = () => {
         navigate('/home');
@@ -35,7 +34,7 @@ const NotFoundPage: React.FC = () => {4
         <button onClick={increment}>increment</button>
         <button onClick={decrement}>Decrement</button>
         <button onClick={handleIncrementByAmount}>Increment by Input</button>
-        <h1>{baseURL}</h1>
+       
 
     </div>);
 };

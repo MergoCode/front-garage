@@ -37,3 +37,38 @@ header img {
   justify-content: space-between;
   align-items: center;
 }
+
+
+.footer-container {
+    width: 100vw;
+    height: auto;
+    align-items: center;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+
+#footer-logo {
+    cursor: pointer;
+    text-align: center;
+}
+
+.footer__links {
+   text-align: center;
+   flex: 1;
+}
+
+.footer-link {
+    margin: 0px 15px;
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+.footer__social-links {
+    display: flex;
+    justify-content: center;
+    
+}

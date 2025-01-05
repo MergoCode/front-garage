@@ -9,7 +9,6 @@ const App = () => {
     <Router id="App">
       <Routes>
          <Route path="/login-register" element={<LoginRegister/>} />
-         <Route path="/home" element={<LandingPage/>} /> {/*лендінг*/}
          <Route path="*" element={<NotFoundPage/>}/>
          {/*нижче сторінки де має бути лейаут */}
          <Route path="/" element={<Layout />}>

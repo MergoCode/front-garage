@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
     <footer className="footer-container">
       <div id="footer-logo" className="col-3">
         <img
-          src="src/assets/university-logo.svg"
-          alt=""
+          src="/assets/university-logo.svg"
+          alt="Uni-logo"
           onClick={() => navigate("home")}
         />
       </div>
@@ -30,13 +30,13 @@ const Footer: React.FC = () => {
       </div>
       <div className="col-3 footer__social-links">
         <a href="" className="footer-link">
-          <img src="src/assets/facebook-icon.svg" alt="" />
+          <img src="/assets/facebook-icon.svg" alt="" />
         </a>
         <a href="" className="footer-link">
-          <img src="src/assets/insta-icon.svg" alt="" />
+          <img src="/assets/insta-icon.svg" alt="" />
         </a>
         <a href="" className="footer-link">
-          <img src="src/assets/youtube-icon.svg" alt="" />
+          <img src="/assets/youtube-icon.svg" alt="" />
         </a>
       </div>
     </footer>

@@ -75,6 +75,7 @@ const LoginRegister: React.FC = () => {
         },
         resolver: zodResolver(schema),
     });
+    
 
     useEffect(() => {
         trigger();

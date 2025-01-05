@@ -4,11 +4,11 @@ const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const images = [
-    { src: 'src/assets/slide1.jpg', alt: 'Slide 1' },
-    { src: 'src/assets/slide2.jpg', alt: 'Slide 2' },
-    { src: 'src/assets/slide3.jpg', alt: 'Slide 3' },
-    { src: 'src/assets/slide4.jpg', alt: 'Slide 4' },
-    { src: 'src/assets/slide5.jpg', alt: 'Slide 5' }
+    { src: '/assets/slide1.jpg', alt: 'Slide 1' },
+    { src: '/assets/slide2.jpg', alt: 'Slide 2' },
+    { src: '/assets/slide3.jpg', alt: 'Slide 3' },
+    { src: '/assets/slide4.jpg', alt: 'Slide 4' },
+    { src: '/assets/slide5.jpg', alt: 'Slide 5' }
   ];
 
   const calculatePosition = (index) => {

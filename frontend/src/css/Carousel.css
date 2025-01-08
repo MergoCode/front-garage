@@ -35,16 +35,3 @@
   object-fit: cover;
   backface-visibility: hidden;
 }
-
-/* @media (max-width: 768px) {
-  .carousel {
-    height: 50vh;
-    width: 100%;
-    margin-top: 50px;
-  }
-
-  .carousel__image {
-    width: 60vw;
-    height: auto;
-  }
-} */

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+
+import React, {useEffect} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import useFetchNews from "../hooks/useFetchNews";
 import useFetchRecentNews from "../hooks/useFetchRecentNews";
+import useNewsStore from '../zustandStore/recentNewsState';
 import "../css/NewsPage.css";
 import Loading from "../components/Loading";
 const newsPage: React.FC = () => {
-
+    const markAsRead = useNewsStore((state) => state.markAsRead);
     const { news_id } = useParams();
     const navigate = useNavigate();
 
@@ -14,6 +16,10 @@ const newsPage: React.FC = () => {
         navigate("/home")
         return null;
     }
+
+    useEffect(() => {
+      markAsRead(news_id); 
+    }, [news_id, markAsRead]);
 
     const {newsData, fetchError} = useFetchNews(news_id);
     const {recentNews, recentFetchError} = useFetchRecentNews();

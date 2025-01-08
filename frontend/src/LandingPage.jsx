@@ -3,6 +3,7 @@ import api from "./AxiosSetting";
 import "./App.css"
 import Carousel from "./components/Carousel";
 import "./css/LandingPage.css"
+import RecentNews from "./components/RecentNews"
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
   const [greeting, setGreeting] = useState("");
@@ -61,9 +62,7 @@ const LandingPage = () => {
             <p><span>+10</span> Партнерів</p>
           </li>
         </ul>
-        <div className="news container">
-          <div className="n"></div>
-        </div>
+          <RecentNews />
       </div>
     </div>
   );

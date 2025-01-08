@@ -69,11 +69,7 @@ const Carousel = () => {
     }
     
   };
-  const handleMouseEnter = (clickedIndex) => {
-    if (clickedIndex === 0) {
-      return 
-    }
-  }
+
   return (
     <div className='carousel'>
       <div className='carousel__container' >
@@ -82,7 +78,6 @@ const Carousel = () => {
             className='carousel__item'
             key={index}
             onClick={() => handleImageClick(index)}
-            onMouseEnter={handleMouseEnter(index)}
             style={{
               ...calculatePosition(index),
             }}

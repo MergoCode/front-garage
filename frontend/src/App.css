@@ -16,6 +16,9 @@
   box-sizing: border-box;
   overflow-y: hidden;
 }
+ul {
+  padding-left: 0;
+}
 
 .logo {
   height: 6em;

@@ -43,7 +43,6 @@ body::-webkit-scrollbar {
   transition: all 0.5s;
   border: #b878c5 3px solid;
   text-decoration: none;
-  margin-bottom: 180px;
 }
 
 .icons-row {
@@ -53,7 +52,8 @@ body::-webkit-scrollbar {
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
-  padding-top: 30px;
+  margin-top: 155px;
+  padding-bottom: 30px;
 }
 .icons-row li {
   display: flex;
@@ -96,18 +96,4 @@ body::-webkit-scrollbar {
   position: relative;
   height: 800px;
   margin-top: 76px;
-}
-
-.news div {
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 60px;
-  width: 1100px;
-  height: 270px;
-  box-shadow: 0px 20px 10px 0px rgba(0, 0, 0, 0.25);
-}
-
-.news n {
-  position: absolute;
-  z-index: 0;
 }

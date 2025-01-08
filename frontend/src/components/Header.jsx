@@ -4,8 +4,6 @@ const Header = () => {
 
     const navigate = useNavigate();
 
-    
-
     return(
         <div className="header">
             <nav className="container px-0 header-nav">

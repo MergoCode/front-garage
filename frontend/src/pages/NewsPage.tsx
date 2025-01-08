@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import useFetchNews from "../hooks/useFetchNews";
 import useFetchRecentNews from "../hooks/useFetchRecentNews";
 import "../css/NewsPage.css";
+import Loading from "../components/Loading";
 const newsPage: React.FC = () => {
 
     const { news_id } = useParams();
@@ -17,9 +18,11 @@ const newsPage: React.FC = () => {
     const {newsData, fetchError} = useFetchNews(news_id);
     const {recentNews, recentFetchError} = useFetchRecentNews();
     
+    
+
     if (!newsData) {
         return(<div>
-            <h1>Loading...</h1>
+            <Loading/>
         </div>);
     }
 

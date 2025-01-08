@@ -13,8 +13,9 @@ const App = () => {
          <Route path="*" element={<NotFoundPage/>}/>
          {/*нижче сторінки де має бути лейаут */}
          <Route path="/" element={<Layout />}>
+
           <Route path="home" element={<LandingPage />} />
-          <Route path="/news/:news_id" element={<NewsPage/>}></Route>
+          <Route path="news/:news_id" element={<NewsPage/>}></Route>
         </Route>
       </Routes>
     </Router>

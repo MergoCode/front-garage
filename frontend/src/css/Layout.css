@@ -78,3 +78,22 @@ header img {
   flex: 1;
 }
 
+
+.loading-container {
+  display: flex;
+justify-content: center;
+align-items: center; 
+flex-direction: column;
+ height: 80vh;
+ width: 100vh;
+overflow-y: visible  !important;
+
+
+}
+
+
+
+
+
+
+

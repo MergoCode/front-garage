@@ -5,8 +5,7 @@ import "./css/AdditionalLogin.css";
 import api from "./AxiosSetting";
 import {z} from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-
+import { HashLoader } from "react-spinners";
 
 const LoginRegister: React.FC = () => {
     const [pageChoice, setPageChoice] = useState<'login' | 'register'>('login');
@@ -261,11 +260,19 @@ const LoginRegister: React.FC = () => {
                 <button onClick={handleChangePage} className="change-btn" ref={changeButtonRef}>
                     <img src='./public/switch-btn.svg' className="col-9" alt="Switch" />
                 </button>
+                
                 <div className={`form-container ${fadeState} d-flex align-items-center col-8`} ref={formContainerRef}>
-                    {pageChoice === "login" ? (
+                {isSubmitting ? (
+                <div className="loader-container">
+                    <HashLoader color="#B878C5" cssOverride={{ overflow: "visible", opacity: "100%"}} className="login-loader" size={100}/>
+                </div>
+            ) : (
+                    pageChoice === "login" ? (
+                       
                         <form className="login-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleLogin)}>
+                            
                             {fetchError && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
-
+                            
                             <input
                                 type="text"
                                 placeholder="Username"
@@ -273,7 +280,7 @@ const LoginRegister: React.FC = () => {
                                 className="login-register-input col-4 mb-1"
                             />
                             {errors.username && <p className="mb-1">⚠︎ {errors.username.message}</p>}
-
+                            
                             <input
                                 type="password"
                                 placeholder="Password"
@@ -281,13 +288,13 @@ const LoginRegister: React.FC = () => {
                                 className="login-register-input col-4 mb-1"
                             />
                             {errors.password && <div className="error-div col-6 mb-1"><p>⚠︎ Password is invalid</p></div>}
-
+                            {isSubmitting ? (<HashLoader color="#B878C5" cssOverride={{overflow: "visible"}}/>) : (
                             <button 
                             className={`login-btn col-3 ${isValid ? `enabled-button` : `disabled-button`}`} 
                             type="submit" 
                             disabled={!isValid || isSubmitting}>
                                 {isSubmitting? "Loading..." : "Sign In"}
-                                </button>
+                                </button>)}
                         </form>
                     ) : (
                         <form className="register-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleRegister)}>
@@ -323,10 +330,12 @@ const LoginRegister: React.FC = () => {
                             <div className="col-6 d-flex justify-content-start">
                                 <p className={`password-safety-${scalePass} passwordSafetyAnimation`}>{passwordStrength}</p>
                             </div>
+                            {isSubmitting ? <HashLoader color="#B878C5" cssOverride={{overflow: "visible"}}/> :
                             <button className={`register-btn col-3 ${isValid ? `enabled-button` : `disabled-button`}`} type="submit" disabled={!isValid || isSubmitting}>
                                 {isSubmitting ? "Loading..." : "Register"}
-                            </button>
+                            </button>}
                         </form>
+                    )
                     )}
                 </div>
             </div>

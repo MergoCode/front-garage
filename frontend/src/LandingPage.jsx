@@ -4,6 +4,7 @@ import "./App.css"
 import Carousel from "./components/Carousel";
 import "./css/LandingPage.css"
 import RecentNews from "./components/RecentNews"
+import Loading from "./components/Loading";
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
   const [greeting, setGreeting] = useState("");
@@ -30,7 +31,7 @@ const LandingPage = () => {
   }, []);
 
   if (loading) {
-    return <h1>Завантаження...</h1>;
+    return <Loading></Loading>;
   }
 
   return ( 

@@ -1,0 +1,63 @@
+.not-found-container {
+    align-items: center !important;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center !important;
+    height: 80vh;
+    overflow: visible;
+}
+
+.not-found-circle {
+    margin-top: 50px;
+    border-radius: 50%;
+    background-color: #B878C5;
+    height: auto;
+    aspect-ratio: 1/1;
+    box-shadow: 0 10px 20px rgb(0,0, 0, 0.25);
+    overflow-y: visible;
+    margin-bottom: 50px;
+    position: relative;
+    justify-content: center !important;
+}
+.not-found-header {
+    color: white;   
+    position: absolute;
+    top:35%;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.24;
+
+}
+
+.not-found-button {
+    position: absolute;
+    border-radius: 40px;
+    border: none;
+    background-color: #94609E;
+    color: white;
+    padding: 15px 10px;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Зміщення за центром кнопки */
+
+    font-size: 18.72px;
+    font-weight: 700;
+    transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+}
+
+.not-found-button:hover {
+    color:#B878C5;
+    background-color: #ffffff;
+}
+
+.not-found-four {
+    font-size: 450px;
+    font-weight: 700;
+    color: #B878C5;
+    text-shadow: 0 20px 40px rgb(0, 0, 0, 0.25);
+    
+}
+
+.not-found-block {
+    overflow: visible !important;
+}

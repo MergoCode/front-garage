@@ -101,12 +101,21 @@
     font-weight: 700;
     text-align: start;
     margin-bottom: 5px;
-    
+    display: -webkit-box; /* Встановлюємо контейнер блоком з гнучкими лініями */
+    -webkit-line-clamp: 3; /* Кількість видимих рядків */
+    -webkit-box-orient: vertical; /* Орієнтація контейнера */
+    overflow: hidden; /* Додаємо три крапки (...) до обрізаного тексту */
+
 }
 
 .news-recent-item-content {
     font-size: 10px;
     text-align: start;
+    display: -webkit-box; /* Встановлюємо контейнер блоком з гнучкими лініями */
+    -webkit-line-clamp: 3; /* Кількість видимих рядків */
+    -webkit-box-orient: vertical; /* Орієнтація контейнера */
+    overflow: hidden;/* Додаємо три крапки (...) до обрізаного тексту */
+
     
 
 }

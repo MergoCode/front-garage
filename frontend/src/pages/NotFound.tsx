@@ -8,8 +8,9 @@ const NotFoundPage: React.FC = () => {4
     const navigate = useNavigate();
    
 
-    const handleRedirect = () => {
-        navigate('/home');
+    const handleRedirect = async () => {
+        navigate("/home");
+        
     }
 
    

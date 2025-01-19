@@ -34,7 +34,7 @@ header img {
 .header-nav {
   display: flex;
   flex-direction: row;
-  padding: 7px 35px;
+  padding: 10px 35px;
   justify-content: space-between;
   align-items: center;
 }
@@ -73,22 +73,12 @@ header img {
   flex: 1;
 }
 
-
 .loading-container {
   display: flex;
-justify-content: center;
-align-items: center; 
-flex-direction: column;
- height: 80vh;
- width: 100vh;
-overflow-y: visible  !important;
-
-
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  width: 100vh;
+  overflow-y: visible !important;
 }
-
-
-
-
-
-
-

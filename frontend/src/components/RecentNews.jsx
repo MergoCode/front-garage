@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import '../css/RecentNews.css';
 import useFetchRecentNews from "../hooks/useFetchRecentNews";
 import useNewsStore from '../zustandStore/recentNewsState';
-
+import Loading from "./Loading";
 const RecentNews = () => {
     const navigate = useNavigate();
     const {recentNews, recentFetchError } = useFetchRecentNews();
@@ -13,13 +13,16 @@ const RecentNews = () => {
     console.log(readNews);
 
     useEffect(() => {
+        loadReadNews();
+    }, [loadReadNews]);
+    useEffect(() => {
         if (!isMouseOver) {
-            setActiveIndex(0);
+            setActiveIndex(-1);
         }
     }, [isMouseOver]);
 
     if (!recentNews || recentNews.length === 0) {
-        return <p className="error">Новини не знайдені.</p>;
+        return <Loading />;
     }
 
     function handleMouseOver(enteredIndex) {
@@ -32,13 +35,13 @@ const RecentNews = () => {
     }
 
     return (
-        <ul className="col-8 news__container" onMouseLeave={handleMouseLeave}>
+        <ul className="col-8 news__container d-flex flex-column" onMouseLeave={handleMouseLeave}>
             {recentNews.map((news, index) => {
                 const isActive = index === activeIndex;
-                const blurStyle = isActive ? "none" : "blur(3px)";
+                // const blurStyle = isActive ? "none" : "blur(3px)";
                 const zIndex = index === 1 ? 2 : (isActive ? 3 : 1);
-                const zTranslate = isActive ? 'translateZ(20px)' : 'translateZ(0px)';
-                const isRead = readNews[news.id];
+                const zTranslate = isActive ? 'translateZ(15px)' : 'translateZ(0px)';
+                const isRead = Boolean(readNews[news.id]);
                 console.log(isRead);
 
                 return (
@@ -47,8 +50,8 @@ const RecentNews = () => {
                         key={index}
                         onMouseOver={() => handleMouseOver(index)}
                         style={{
-                            top: `${index * 120}px`,
-                            filter: blurStyle,
+                            // top: `${index * 120}px`,
+                            // filter: blurStyle,
                             zIndex: zIndex,
                             transform: zTranslate
                         }}
@@ -72,7 +75,10 @@ const RecentNews = () => {
                         <div className="dateInfo__row mb-2">
                             <p className="news__date">30.12.2024 | 11:39</p>
                             <a href="" className="news__readMore"
-                               onClick={() => navigate(`/news/${news.id}`)}
+                            onClick={() => {
+                                markAsRead(news.id);
+                                navigate(`/news/${news.id}`);
+                            }}                            
                                >Читати далі...</a>
                         </div>
                     </li>

@@ -31,7 +31,7 @@ const LandingPage = () => {
   }, []);
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return ( 

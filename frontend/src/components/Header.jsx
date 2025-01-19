@@ -17,7 +17,7 @@ const Header = () => {
                     <img src="/assets/schedule-icon.svg" alt='Розклад'></img>Розклад</a>
 
                 <a className="col-2 header-link" href="#">
-                    <img src="/assets/like-icon.svg" alt="Оцінка якості викладання"></img>Оцінка якості викладання</a>
+                    <img src="/assets/like-icon.svg" alt="Новини"></img>Новини</a>
                     
                 <a className="col-2 header-link" href="#">
                     <img src="/assets/kursova-icon.svg" alt='Курсова робота'></img>Курсова робота</a>

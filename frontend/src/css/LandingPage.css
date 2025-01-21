@@ -52,8 +52,9 @@ body::-webkit-scrollbar {
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
-  margin-top: 155px;
+  margin-top: 125px;
   padding-bottom: 30px;
+  padding-top: 10px;
 }
 .icons-row li {
   display: flex;

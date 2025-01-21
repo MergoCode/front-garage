@@ -12,7 +12,7 @@ const useNewsStore = create((set) => ({
       // оновлюємо стан в localStorage
       localStorage.setItem("readNews", JSON.stringify(newReadNews));
       return { readNews: newReadNews };
-    });
+    }, false);
   },
 
   loadReadNews: () => {

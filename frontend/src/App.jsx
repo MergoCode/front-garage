@@ -5,6 +5,7 @@ import LandingPage from "./LandingPage";
 import NotFoundPage from './pages/NotFound.tsx';
 import Layout from "./components/Layout";
 import NewsPage from './pages/NewsPage.tsx';
+import AudiencePage from './pages/AudiencePage.tsx';
 const App = () => {
   return(
     <Router id="App">
@@ -13,7 +14,7 @@ const App = () => {
          {/*нижче сторінки де має бути лейаут */}
          <Route path="/" element={<Layout />}>
          <Route path="*" element={<NotFoundPage/>}/>
-
+          <Route path='/audience-picker' element={<AudiencePage/>}/>
           <Route path="home" element={<LandingPage />} />
           <Route path="news/:news_id" element={<NewsPage/>}></Route>
         </Route>

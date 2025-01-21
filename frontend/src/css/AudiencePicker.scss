@@ -1,0 +1,56 @@
+@use "./variables";
+
+@mixin Block($padding) {
+    border-radius: 60px;
+    box-shadow: 0 20px 10px rgb(0, 0, 0, 0.25);
+    background-color: white;
+    height: auto;
+    margin: 58px 0;
+    padding: $padding;
+}
+
+@mixin flexCenter($flexDirection, $justify-content) {
+    display: flex;
+    justify-content: center;
+    flex-direction: $flexDirection;
+    
+}
+
+.audience-block {
+    @include Block(24px 40px);
+    @include flexCenter(row, center);
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    .audience-header-block {
+        color: #FFFFFF;
+        background-color: variables.$primaryColor;
+        border-radius: 30px;
+        align-items: center;
+        display: flex;
+        padding-left: 50px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+        p {
+            font-size: 24px;
+            margin-bottom: 0;
+            font-family: variables.$fontFamily;
+            font-weight: 550;
+        }
+
+
+    }
+    form{
+        
+           label {
+            color: variables.$primaryColor;
+            margin: 0 10px;
+           }
+           input {
+            accent-color: variables.$primaryColor;
+           }
+    }
+    
+}
+

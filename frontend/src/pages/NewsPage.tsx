@@ -3,11 +3,11 @@ import React, {useEffect} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import useFetchNews from "../hooks/useFetchNews";
 import useFetchRecentNews from "../hooks/useFetchRecentNews";
-import useNewsStore from '../zustandStore/recentNewsState';
+import useRecentNewsState from '../zustandStore/recentNewsState';
 import "../css/NewsPage.css";
 import Loading from "../components/Loading";
 const newsPage: React.FC = () => {
-    const markAsRead = useNewsStore((state) => state.markAsRead);
+    const markAsRead = useRecentNewsState((state) => state.markAsRead);
     const { news_id } = useParams();
     const navigate = useNavigate();
 
@@ -18,8 +18,12 @@ const newsPage: React.FC = () => {
     }
 
     useEffect(() => {
-      markAsRead(news_id); 
-    }, [news_id, markAsRead]);
+        const newsIndex = parseInt(news_id, 10); // Перетворення `news_id` у число
+        if (!isNaN(newsIndex)) {
+          markAsRead(newsIndex - 1); // Позначаємо новину як прочитану
+        }
+      }, [news_id, markAsRead]);
+      
 
     const {newsData, fetchError} = useFetchNews(news_id);
     const {recentNews, recentFetchError} = useFetchRecentNews();

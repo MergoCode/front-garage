@@ -5,7 +5,7 @@ type CounterStore = {
     count: number,
     increment: () => void,
     decrement: () => void,
-    incrementByAmount: (payload) => void,
+    incrementByAmount: (payload: number) => void,
 }
 
 

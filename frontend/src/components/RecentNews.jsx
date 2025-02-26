@@ -39,13 +39,15 @@ const RecentNews = () => {
                 const zIndex = index === 1 ? 2 : (isActive ? 3 : 1);
                 const zTranslate = isActive ? 'translateZ(15px)' : 'translateZ(0px)';
                 const isRead = Array.isArray(readNews) && readNews.includes(index);
-                console.log("readNews state:", readNews); // Додайте це перед перевіркою includes
 
                 return (
                     <li
                         className='news__card'
                         key={index}
                         onMouseOver={() => handleMouseOver(index)}
+                        onClick={() => {
+                            navigate(`/news/${news.id}`);
+                        }}  
                         style={{
                             // top: `${index * 120}px`,
                             // filter: blurStyle,
@@ -72,9 +74,7 @@ const RecentNews = () => {
                         <div className="dateInfo__row mb-2">
                             <p className="news__date">30.12.2024 | 11:39</p>
                             <a href="" className="news__readMore"
-                            onClick={() => {
-                                navigate(`/news/${news.id}`);
-                            }}                            
+                                                      
                                >Читати далі...</a>
                         </div>
                     </li>

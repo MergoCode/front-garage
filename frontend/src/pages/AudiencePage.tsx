@@ -73,6 +73,7 @@ const AudiencePage: React.FC = () => {
     audienceFreePairs: number[];
     campus: "Drago" | "Tarny";
   }> | null>(null);
+  const [showDetailedView, setShowDetailedView] = useState(false);
 
   const setCampus = useDatePickerStore((state) => state.setCampus);
   const selectedCampus = watch("campus");
@@ -87,6 +88,7 @@ const AudiencePage: React.FC = () => {
   const { audienceData, fetchAudienceError } = useFetchFreeAudiences();
 
   useEffect(() => {
+    console.log("Data loaded:", { audienceData, selectedCampus });
     const savedBookings = localStorage.getItem("audienceBookings");
     if (savedBookings) {
       setBookings(JSON.parse(savedBookings));
@@ -94,10 +96,23 @@ const AudiencePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (audienceData && selectedCampus) {
+    if (audienceData) {
+      console.log("Processing audience data:", audienceData);
+      
+      // Filter audiences for selected campus or show all if none selected
+      const campusToUse = selectedCampus || "Drago"; // Default to Drago if none selected
+      
       const originalAudiences = audienceData.audiences.filter(
-        audience => audience.campus === selectedCampus
+        audience => !selectedCampus || audience.campus === campusToUse
       );
+      
+      console.log("Filtered audiences:", originalAudiences);
+      
+      if (originalAudiences.length === 0) {
+        console.log("No audiences found for campus:", campusToUse);
+        setAvailableAudiences([]);
+        return;
+      }
       
       const updatedAudiences = JSON.parse(JSON.stringify(originalAudiences));
       
@@ -121,10 +136,17 @@ const AudiencePage: React.FC = () => {
         };
       });
       
+      console.log("Available audiences set to:", filteredAudiences);
       setAvailableAudiences(filteredAudiences);
+      
+      // Auto-submit when data is available and campus is selected
+      if (selectedCampus && !searchPerformed) {
+        onSubmit({ campus: selectedCampus });
+      }
     }
   }, [audienceData, bookings, selectedCampus, selectedDate]);
 
+  // Get booking info for an auditory
   const getBookingsForAuditory = (campus: string, number: string) => {
     return bookings
       .filter((booking) => booking.campus === campus && booking.number === number && 
@@ -163,7 +185,16 @@ const AudiencePage: React.FC = () => {
   };
 
   const onSubmit = (data: FormData) => {
-    const initialAuditories: AuditoryData[] = availableAudiences?.map(audience => {
+    console.log("Form submitted with data:", data);
+    console.log("Available audiences:", availableAudiences);
+    
+    if (!availableAudiences) {
+      console.log("No available audiences data");
+      setSearchPerformed(true);
+      return;
+    }
+    
+    const initialAuditories: AuditoryData[] = availableAudiences.map(audience => {
       const number = audience.audienceName.split(" ")[0];
       
       return {
@@ -182,12 +213,39 @@ const AudiencePage: React.FC = () => {
       return 0;
     });
 
+    console.log("Prepared auditories:", sortedAuditories);
     setAuditories(sortedAuditories);
     setSearchPerformed(true);
+    
+    // Always show detailed view after search
+    setShowDetailedView(true);
   };
 
   const handleBook = (auditory: AuditoryData) => {
     setSelectedAuditory(auditory);
+    setShowModal(true);
+  };
+
+  // Handler for direct booking from timetable
+  const handleDirectBooking = (audienceName: string, pairNumber: number, campus: "Drago" | "Tarny") => {
+    // Extract audience number from name (e.g., "201 ауд." → "201")
+    const number = audienceName.split(" ")[0];
+    const campusString = campus === "Drago" ? "Драгоманова, 50" : "Тарнавського, 107";
+    const time = pairToTimeMap[pairNumber];
+    
+    // Create auditory data object
+    const auditoryData: AuditoryData = {
+      campus: campusString,
+      number,
+      freePairs: [pairNumber],
+      freeTime: [time]
+    };
+    
+    // Set the selected time directly
+    setSelectedTime(time);
+    
+    // Open the booking modal with pre-selected time
+    setSelectedAuditory(auditoryData);
     setShowModal(true);
   };
 
@@ -207,27 +265,30 @@ const AudiencePage: React.FC = () => {
 
       localStorage.setItem("audienceBookings", JSON.stringify(updatedBookings));
 
-      setAuditories((prevAuditories) => {
-        return prevAuditories.map((auditory) => {
-          if (auditory.campus === selectedAuditory.campus && auditory.number === selectedAuditory.number) {
-            const updatedFreeTime = auditory.freeTime.filter((time) => time !== selectedTime);
-            const updatedBookedTime = [
-              ...(auditory.bookedTime || []),
-              { time: selectedTime, bookedBy, name },
-            ];
-            return {
-              ...auditory,
-              freeTime: updatedFreeTime,
-              bookedTime: updatedBookedTime,
-            };
-          }
-          return auditory;
-        }).sort((a, b) => {
-          if (a.freeTime.length === 0 && b.freeTime.length > 0) return 1;
-          if (a.freeTime.length > 0 && b.freeTime.length === 0) return -1;
-          return 0;
+      // Update auditories list only if detailed view is shown
+      if (showDetailedView) {
+        setAuditories((prevAuditories) => {
+          return prevAuditories.map((auditory) => {
+            if (auditory.campus === selectedAuditory.campus && auditory.number === selectedAuditory.number) {
+              const updatedFreeTime = auditory.freeTime.filter((time) => time !== selectedTime);
+              const updatedBookedTime = [
+                ...(auditory.bookedTime || []),
+                { time: selectedTime, bookedBy, name },
+              ];
+              return {
+                ...auditory,
+                freeTime: updatedFreeTime,
+                bookedTime: updatedBookedTime,
+              };
+            }
+            return auditory;
+          }).sort((a, b) => {
+            if (a.freeTime.length === 0 && b.freeTime.length > 0) return 1;
+            if (a.freeTime.length > 0 && b.freeTime.length === 0) return -1;
+            return 0;
+          });
         });
-      });
+      }
 
       toast.success("Бронювання успішне!", {
         className: "toast-success",
@@ -238,6 +299,11 @@ const AudiencePage: React.FC = () => {
       setBookedBy("");
       setName("");
       setSelectedAuditory(null);
+      
+      // Refresh available audiences after booking
+      if (audienceData && selectedCampus) {
+        onSubmit({ campus: selectedCampus });
+      }
     }
   };
 
@@ -263,7 +329,7 @@ const AudiencePage: React.FC = () => {
           <button type="submit">Перевірити доступність</button>
         </form>
 
-        {selectedCampus && availableAudiences && (
+        {audienceData && availableAudiences && availableAudiences.length > 0 && (
           <div className="timetable-view">
             <h4>Доступні аудиторії по парах</h4>
             <div className="timetable-container">
@@ -279,14 +345,18 @@ const AudiencePage: React.FC = () => {
 
               {/* Audiences for each pair */}
               <div className="audiences-column">
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <div key={index} className="audiences-row">
+                {Array.from({ length: 8 }).map((_, pairIndex) => (
+                  <div key={pairIndex} className="audiences-row">
                     {availableAudiences
-                      .filter((aud) => aud.audienceFreePairs.includes(index + 1))
+                      .filter((aud) => aud.audienceFreePairs.includes(pairIndex + 1))
                       .map((aud, i) => (
-                        <span key={i} className="audience">
+                        <button 
+                          key={i} 
+                          className="audience-button"
+                          onClick={() => handleDirectBooking(aud.audienceName, pairIndex + 1, aud.campus)}
+                        >
                           {aud.audienceName}
-                        </span>
+                        </button>
                       ))}
                   </div>
                 ))}
@@ -294,46 +364,46 @@ const AudiencePage: React.FC = () => {
             </div>
           </div>
         )}
-
-        <div className="auditory-list">
-          <h4>Детальна інформація про аудиторії</h4>
-          {searchPerformed ? (
-            auditories.length > 0 ? (
-              auditories.map((a, i) => (
-                <Auditory 
-                  key={i} 
-                  campus={a.campus} 
-                  number={a.number} 
-                  freeTime={a.freeTime} 
-                  bookedTime={a.bookedTime} 
-                  onclick={() => handleBook(a)} 
-                  isFullyBooked={a.freeTime.length === 0}
-                />
-              ))
+{/* 
+        {(showDetailedView || searchPerformed) && (
+          <div className="auditory-list">
+            <h4>Детальна інформація про аудиторії</h4>
+            {searchPerformed ? (
+              auditories.length > 0 ? (
+                auditories.map((a, i) => (
+                  <Auditory 
+                    key={i} 
+                    campus={a.campus} 
+                    number={a.number} 
+                    freeTime={a.freeTime} 
+                    bookedTime={a.bookedTime} 
+                    onclick={() => handleBook(a)} 
+                    isFullyBooked={a.freeTime.length === 0}
+                  />
+                ))
+              ) : (
+                <p className="no-auditories">Немає доступних аудиторій</p>
+              )
             ) : (
-              <p className="no-auditories">Немає доступних аудиторій</p>
-            )
-          ) : (
-            selectedCampus && <p className="no-auditories">Виберіть корпус та натисніть "Перевірити доступність"</p>
-          )}
-        </div>
+              <p className="no-auditories">Виберіть корпус та натисніть "Перевірити доступність"</p>
+            )}
+          </div>
+        )} */}
+        
+        {audienceData === null && (
+          <p className="loading">Завантаження даних аудиторій...</p>
+        )}
+        
+        {fetchAudienceError && (
+          <p className="error">Помилка завантаження: {fetchAudienceError}</p>
+        )}
       </div>
 
       {showModal && selectedAuditory && (
         <div className="modal-overlay">
           <div className="modal">
             <h4>Бронювання аудиторії {selectedAuditory.number}</h4>
-            <label>
-              Час:
-              <select value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)}>
-                <option value="">-- Оберіть час --</option>
-                {selectedAuditory.freeTime.map((time, i) => (
-                  <option key={i} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </select>
-            </label>
+                <p>Обраний час: <strong> {selectedAuditory.freeTime}</strong></p>
             <label>
               Хто бронює:
               <select value={bookedBy} onChange={(e) => setBookedBy(e.target.value)}>

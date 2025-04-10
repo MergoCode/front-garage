@@ -67,7 +67,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   width: 400px;
-  height: 500px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -369,9 +369,13 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  // button {
+  //   padding: 8px 20px;
+  //   border-radius: 15px;
+  // }
 }
 
-.audience {
+.audience-button {
   display: inline-block;
   background-color: #e1f5fe;
   border: 1px solid #b3e5fc;

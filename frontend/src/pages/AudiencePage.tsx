@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AudienceDatePicker from '../components/DatePicker';
 import useFetchFreeAudiences from "../hooks/useFetchFreeAudiences";
 import { useDatePickerStore } from "../zustandStore/store";
+import Loading from "../components/Loading";
 
 type FormData = {
   campus: "Drago" | "Tarny",
@@ -391,7 +392,7 @@ const AudiencePage: React.FC = () => {
         )} */}
         
         {audienceData === null && (
-          <p className="loading">Завантаження даних аудиторій...</p>
+          <Loading />
         )}
         
         {fetchAudienceError && (

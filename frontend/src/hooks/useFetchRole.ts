@@ -8,7 +8,7 @@ export default  function useFetchRole() {
 
     useEffect(()=>{
         const fetchRole = async () =>{
-            const token = sessionStorage.getItem("accessToken");
+            const token = sessionStorage.getItem("access_token");
             if (!token){
                 setError('Токен не знайдено');
                 setLoading(false);

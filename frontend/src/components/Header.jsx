@@ -36,8 +36,8 @@ const Header = () => {
                     <img src="/assets/kursova-icon.svg" alt='Вільні аудиторії'></img>Вільні аудиторії
                 </a>
 
-                <a className="col-2 header-link" href="#">
-                    <img src="/assets/like-icon.svg" alt="Новини"></img>Новини
+                <a className="col-2 header-link" href="/rating">
+                    <img src="/assets/like-icon.svg" alt="Оцінити викладача"></img>Оцінити викладача
                 </a>
                     
                 <div className="col-2" ref={dropdownRef}>

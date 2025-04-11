@@ -9,6 +9,7 @@ import useFetchFreeAudiences from "../hooks/useFetchFreeAudiences";
 import { useDatePickerStore } from "../zustandStore/store";
 import Loading from "../components/Loading";
 
+
 type FormData = {
   campus: "Drago" | "Tarny",
 }
@@ -217,9 +218,6 @@ const AudiencePage: React.FC = () => {
     console.log("Prepared auditories:", sortedAuditories);
     setAuditories(sortedAuditories);
     setSearchPerformed(true);
-    
-    // Always show detailed view after search
-    setShowDetailedView(true);
   };
 
   const handleBook = (auditory: AuditoryData) => {
@@ -227,14 +225,11 @@ const AudiencePage: React.FC = () => {
     setShowModal(true);
   };
 
-  // Handler for direct booking from timetable
   const handleDirectBooking = (audienceName: string, pairNumber: number, campus: "Drago" | "Tarny") => {
-    // Extract audience number from name (e.g., "201 ауд." → "201")
     const number = audienceName.split(" ")[0];
     const campusString = campus === "Drago" ? "Драгоманова, 50" : "Тарнавського, 107";
     const time = pairToTimeMap[pairNumber];
     
-    // Create auditory data object
     const auditoryData: AuditoryData = {
       campus: campusString,
       number,
@@ -242,10 +237,7 @@ const AudiencePage: React.FC = () => {
       freeTime: [time]
     };
     
-    // Set the selected time directly
     setSelectedTime(time);
-    
-    // Open the booking modal with pre-selected time
     setSelectedAuditory(auditoryData);
     setShowModal(true);
   };
@@ -301,7 +293,6 @@ const AudiencePage: React.FC = () => {
       setName("");
       setSelectedAuditory(null);
       
-      // Refresh available audiences after booking
       if (audienceData && selectedCampus) {
         onSubmit({ campus: selectedCampus });
       }
@@ -311,7 +302,7 @@ const AudiencePage: React.FC = () => {
   return (
     <div className="container audience-block">
       <div className="audience-header-block col-11">
-        <p>Аудиторії</p>
+        <p>Вільні аудиторії</p>
       </div>
       <div className="col-11">
         <form className="d-flex justify-content-between" onSubmit={handleSubmit(onSubmit)}>
@@ -332,7 +323,7 @@ const AudiencePage: React.FC = () => {
 
         {audienceData && availableAudiences && availableAudiences.length > 0 && (
           <div className="timetable-view">
-            <h4>Доступні аудиторії по парах</h4>
+            {/*<h4>Доступні аудиторії по парах</h4>*/}
             <div className="timetable-container">
               {/* Column headers with pair numbers and times */}
               <div className="pair-column">
@@ -365,8 +356,14 @@ const AudiencePage: React.FC = () => {
             </div>
           </div>
         )}
-{/* 
-        {(showDetailedView || searchPerformed) && (
+        
+        <button 
+          className="furtherInfoBtn mx-auto" 
+          onClick={()=>setShowDetailedView(!showDetailedView)}>
+          {showDetailedView} ? (Приховати детальну інформацію про аудиторії на цю дату) : (Побачити детальнішу інформацію про аудиторії на цю дату)
+        </button>
+
+        {(showDetailedView) && (
           <div className="auditory-list">
             <h4>Детальна інформація про аудиторії</h4>
             {searchPerformed ? (
@@ -389,7 +386,7 @@ const AudiencePage: React.FC = () => {
               <p className="no-auditories">Виберіть корпус та натисніть "Перевірити доступність"</p>
             )}
           </div>
-        )} */}
+        )}
         
         {audienceData === null && (
           <Loading />

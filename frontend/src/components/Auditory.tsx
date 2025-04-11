@@ -52,9 +52,9 @@ const Auditory: React.FC<AuditoryProps> = ({
         </>
       )}
       
-      <button onClick={onclick} disabled={isFullyBooked}>
+      {/* <button onClick={onclick} disabled={isFullyBooked}>
         {isFullyBooked ? 'Повністю заброньована' : 'Забронювати'}
-      </button>
+      </button> */}
     </div>
   );
 };

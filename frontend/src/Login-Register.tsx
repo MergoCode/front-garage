@@ -270,9 +270,10 @@ const LoginRegister: React.FC = () => {
                     pageChoice === "login" ? (
                        
                         <form className="login-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleLogin)}>
-                                    <a className="btn btn-block" href="http://localhost:8000/api/auth/google/" role="button">
+                                    <a className="btn btn-block mb-3" href="http://localhost:8000/api/auth/google/" role="button">
                                         <i className="fab fa-google"></i>
-                                        Sign In with Google
+                                        <img className="px-2" src="public/assets/google-icon.svg" height={24} />
+                                        Log In with Google
                                     </a>
                             {fetchError && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
                             
@@ -309,8 +310,9 @@ const LoginRegister: React.FC = () => {
                             <i className="fab fa-google"></i>
                                  Sign In with Google
                         </a> */}
-                                    <a className="btn btn-block" href="http://localhost:8000/api/auth/google/" role="button">
-                                        <i className="fab fa-google"></i>
+                                     <a className="btn btn-block mb-3" href="http://localhost:8000/api/auth/google/" role="button">
+                                        <i className="fab fa-google "></i>
+                                        <img className="px-2" src="public/assets/google-icon.svg" height={24} />
                                         Sign In with Google
                                     </a>
                             <input

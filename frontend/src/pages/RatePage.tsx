@@ -56,7 +56,7 @@ const TeachersPage: React.FC = () => {
         ) : error ? (
           <p className="error">Помилка завантаження: {error}</p>
         ) : (
-          <div className="teachers-grid">
+          <div className="teachers-grid p-3">
             {filteredTeachers.map((teacher) => (
               <TeacherCard key={teacher.id} teacher={teacher} />
             ))}

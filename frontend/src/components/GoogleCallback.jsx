@@ -1,4 +1,3 @@
-// GoogleCallback.jsx
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -9,58 +8,21 @@ function GoogleCallback() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Function to handle the callback
-    const handleCallback = async () => {
-      try {
-        // Get the code parameter from the URL
-        const searchParams = new URLSearchParams(location.search);
-        const code = searchParams.get('code');
-        
-        if (!code) {
-          // If there's an error parameter, display it
-          const error = searchParams.get('error');
-          if (error) {
-            setError(`Authentication error: ${error}`);
-          } else {
-            setError('No authorization code found');
-          }
-          setLoading(false);
-          return;
-        }
-
-        // The backend will process the code and redirect with tokens
-        // This component will not see that request as it will be a full redirect
-        
-        // Alternatively, if your backend returns JSON instead of redirecting:
-        // const response = await axios.get(`http://localhost:8000/api/auth/google/callback/?code=${code}`);
-        // const { access_token, refresh_token } = response.data;
-        // localStorage.setItem('access_token', access_token);
-        // localStorage.setItem('refresh_token', refresh_token);
-        // navigate('/dashboard');
-      } catch (err) {
-        console.error('Error during Google callback processing:', err);
-        setError('Failed to complete authentication');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    handleCallback();
-  }, [location, navigate]);
-
-  // Get tokens from URL if they're there (for the case where backend redirects with tokens)
-  useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const accessToken = searchParams.get('access_token');
-    const refreshToken = searchParams.get('refresh_token');
+    const accessToken = searchParams.get('accessToken');
+    const refreshToken = searchParams.get('refreshToken');
+
+    console.log("URL Params:", { accessToken, refreshToken }); // Debug
 
     if (accessToken && refreshToken) {
-      // Store tokens
-      sessionStorage.setItem('access_token', accessToken);
-      sessionStorage.setItem('refresh_token', refreshToken);
-      
-      // Redirect to dashboard or home page
+      console.log("Storing tokens:", { accessToken, refreshToken }); // Debug
+      sessionStorage.setItem('accessToken', accessToken.trim()); // Trim to avoid whitespace
+      sessionStorage.setItem('refreshToken', refreshToken.trim());
       navigate('/home');
+      setLoading(false);
+    } else {
+      setError('No tokens found in URL');
+      setLoading(false);
     }
   }, [location, navigate]);
 

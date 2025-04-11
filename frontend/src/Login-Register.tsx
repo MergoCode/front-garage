@@ -270,7 +270,10 @@ const LoginRegister: React.FC = () => {
                     pageChoice === "login" ? (
                        
                         <form className="login-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleLogin)}>
-                            
+                                    <a className="btn btn-block" href="http://localhost:8000/api/auth/google/" role="button">
+                                        <i className="fab fa-google"></i>
+                                        Sign In with Google
+                                    </a>
                             {fetchError && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
                             
                             <input
@@ -297,9 +300,19 @@ const LoginRegister: React.FC = () => {
                                 </button>)}
                         </form>
                     ) : (
-                        <form className="register-form d-flex justify-content-center align-items-center" onSubmit={handleSubmit(handleRegister)}>
+                        <form className="register-form d-flex justify-content-center align-items-center" 
+                        onSubmit={handleSubmit(handleRegister)}>
                             {fetchError && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
-
+                            {/* <a className="btn btn-block" 
+                            href="http://localhost:8000/auth/social/login/google/?process=login" 
+                            role="button">
+                            <i className="fab fa-google"></i>
+                                 Sign In with Google
+                        </a> */}
+                                    <a className="btn btn-block" href="http://localhost:8000/api/auth/google/" role="button">
+                                        <i className="fab fa-google"></i>
+                                        Sign In with Google
+                                    </a>
                             <input
                                 type="text"
                                 placeholder="Username"

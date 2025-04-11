@@ -2,19 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import '../css/RecentNews.css';
 import useFetchRecentNews from "../hooks/useFetchRecentNews";
-import useNewsStore from '../zustandStore/recentNewsState';
+import useRecentNewsState from '../zustandStore/recentNewsState';
 import Loading from "./Loading";
 const RecentNews = () => {
     const navigate = useNavigate();
     const {recentNews, recentFetchError } = useFetchRecentNews();
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMouseOver, setIsMouseOver] = useState(false);
-    const { readNews, markAsRead, loadReadNews } = useNewsStore((state) => state);
-    console.log(readNews);
+    const { readNews, markAsRead } = useRecentNewsState((state) => state);
 
-    useEffect(() => {
-        loadReadNews();
-    }, [loadReadNews]);
+
     useEffect(() => {
         if (!isMouseOver) {
             setActiveIndex(-1);
@@ -35,20 +32,22 @@ const RecentNews = () => {
     }
 
     return (
-        <ul className="col-8 news__container d-flex flex-column" onMouseLeave={handleMouseLeave}>
+        <ul className="col-8 news__container" onMouseLeave={handleMouseLeave}>
             {recentNews.map((news, index) => {
                 const isActive = index === activeIndex;
                 // const blurStyle = isActive ? "none" : "blur(3px)";
                 const zIndex = index === 1 ? 2 : (isActive ? 3 : 1);
                 const zTranslate = isActive ? 'translateZ(15px)' : 'translateZ(0px)';
-                const isRead = Boolean(readNews[news.id]);
-                console.log(isRead);
+                const isRead = Array.isArray(readNews) && readNews.includes(index);
 
                 return (
                     <li
                         className='news__card'
                         key={index}
                         onMouseOver={() => handleMouseOver(index)}
+                        onClick={() => {
+                            navigate(`/news/${news.id}`);
+                        }}  
                         style={{
                             // top: `${index * 120}px`,
                             // filter: blurStyle,
@@ -59,8 +58,8 @@ const RecentNews = () => {
                         <h2 className="news__title col-11"
                         onClick={() => navigate(`/news/${news.id}`)}
                         >{news.recent_header}</h2>
-                        <div className="pIcon__row ">
-                            <div className="icon__wrap d-flex align-items-center justify-content-center col-1">
+                        <div className="pIcon__row">
+                            <div className="icon__wrap col-1">
                             <img
                                 className={`news__icon`}
                                 height='35px'
@@ -75,10 +74,7 @@ const RecentNews = () => {
                         <div className="dateInfo__row mb-2">
                             <p className="news__date">30.12.2024 | 11:39</p>
                             <a href="" className="news__readMore"
-                            onClick={() => {
-                                markAsRead(news.id);
-                                navigate(`/news/${news.id}`);
-                            }}                            
+                                                      
                                >Читати далі...</a>
                         </div>
                     </li>

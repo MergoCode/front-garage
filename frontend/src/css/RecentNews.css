@@ -1,10 +1,12 @@
 .news__container {
-  height: 750px;
+  height: auto;
   perspective: 1000px;
   transform: preserve-3d;
   margin-bottom: 30px;
-  gap: 30px;
+  gap: 15px;
   padding: 10px 0px 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .news__card {
@@ -21,11 +23,9 @@
 }
 
 .news__title {
-  color: #b878c5;
+  color: var(--accent-color);
   text-align: center;
-  font-family: var(--main-font);
-  font-size: 18px;
-  font-style: normal;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: normal;
   margin: 15px auto 0px;
@@ -37,11 +37,14 @@
   flex-direction: row;
 }
 
+.icon__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .news__paragraph {
-  color: #000;
-  font-family: var(--main-font);
-  font-size: 16px;
-  font-style: normal;
+  font-size: 1rem;
   font-weight: 400;
   line-height: normal;
   margin: 0;
@@ -52,7 +55,6 @@
   flex-direction: row;
   margin: 0 54px;
   font-size: 14px;
-  font-weight: 400;
   color: #6d6a6a;
   justify-content: space-between;
   align-content: center;
@@ -61,5 +63,5 @@
 .news__readMore {
   text-decoration: none;
   color: #6d6a6a;
-  height: 24px;
+  height: 1.5rem;
 }

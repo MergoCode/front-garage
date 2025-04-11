@@ -1,0 +1,91 @@
+.contactsContainer
+    background-image: url('assets/contacts-bcground.png')
+    background-position: center
+    border-top: #fff solid 12px
+    border-bottom: #fff solid 12px
+    background-size: 105%
+    padding: 145px 0px
+    font-family: var(--main-font)
+    z-index: 0
+    position: relative
+    height: 86vh
+    h1
+        color: #FFF
+        position: relative
+        text-align: center
+        font-size: 46px
+        font-weight: 700
+        line-height: normal
+        z-index: 10
+        overflow-x: hidden
+    h1::before
+        background-color: var(--accent-color)
+        height: 40%
+        width: 70%
+        position: absolute
+        top: 50%
+        left: 20%
+        z-index: -1
+        content: ''
+        filter: blur(2px)
+
+    .mapWrap
+        display: flex
+        flex-direction: column
+        gap: 23px
+        .link
+            padding: 5px 15px
+            margin: 0 auto
+            color: #FFF
+            text-align: center
+            font-size: 18px
+            font-style: normal
+            font-weight: 700
+            line-height: normal
+            backdrop-filter: blur
+            text-decoration: none
+            position: relative
+            z-index: 10
+            overflow: hidden
+            &::after
+                background-color: var(--accent-color)
+                position: absolute
+                height: 95%
+                width: 95%
+                top: 3%
+                left: 3%
+                z-index: -1
+                content: ''
+                filter: blur(3px)
+
+.contactsContainer__list
+    padding-left: 0!important
+    li
+        display: flex
+        p
+            padding-left: 0
+            padding: 8px
+            color: #FFF
+            text-align: left
+            font-size: 18px
+            font-weight: 700
+            line-height: normal
+            letter-spacing: 3px
+            position: relative
+            margin-top: 16px
+            backdrop-filter: blur(3px)
+            overflow-x: hidden
+
+            &::before
+                background-color: var(--accent-color)
+                height: 70%
+                width: 97%
+                position: absolute
+                left: 2%
+                top: 10%
+                z-index: -1
+                content: ''
+                filter: blur(3px)
+
+        img
+            margin-right: 14px

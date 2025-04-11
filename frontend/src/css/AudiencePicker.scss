@@ -49,8 +49,53 @@
            }
            input {
             accent-color: variables.$primaryColor;
+            
            }
     }
     
 }
 
+
+.audience-table {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pair-column {
+    grid-row: 1 / span 8; /* Займає весь стовпець */
+    background: linear-gradient(180deg, #6a11cb, #2575fc); /* Вертикальний градієнт */
+    color: white;
+    border-radius: 8px 0 0 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Відстань між парами */
+    padding: 10px;
+  }
+  
+  .pair-number {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .audiences {
+    padding: 15px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .audience {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background: #e0e0ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .no-audience {
+    color: #ff0000;
+  }
+  

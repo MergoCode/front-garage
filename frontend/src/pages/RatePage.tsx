@@ -44,7 +44,7 @@ const TeachersPage: React.FC = () => {
       <div className="teachers-header-block col-11">
         <p>Викладачі</p>
       </div>
-      <div className="col-11">
+      <div className="col-12">
         <DepartmentFilter 
           departments={getDepartmentsList()} 
           selectedDepartment={selectedDepartment}
@@ -56,7 +56,7 @@ const TeachersPage: React.FC = () => {
         ) : error ? (
           <p className="error">Помилка завантаження: {error}</p>
         ) : (
-          <div className="teachers-grid">
+          <div className="teachers-grid pt-3">
             {filteredTeachers.map((teacher) => (
               <TeacherCard key={teacher.id} teacher={teacher} />
             ))}

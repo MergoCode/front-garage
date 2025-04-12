@@ -13,6 +13,7 @@ import GoogleCallback from './components/GoogleCallback.jsx'
 import GoogleLogin from './components/GoogleLogin.jsx';
 import RatePage from './pages/RatePage.tsx';
 import SearchResultsPage from './pages/SearchResults.tsx';
+import CreateDocumentPage from './pages/CreateDocumentPage.tsx'
 const App = () => {
   return(
     <Router id="App">
@@ -21,6 +22,7 @@ const App = () => {
          <Route path="/api/auth/google/callback" element={<GoogleCallback />} />
          {/*нижче сторінки де має бути лейаут */}
           <Route path="/" element={<Layout />}>
+          <Route path="/createDocx" element={<CreateDocumentPage />} />
           <Route path='/rating' element={<RatePage/>}/>
           <Route path="*" element={<NotFoundPage/>}/>
           <Route path='/audience-picker' element={<AudiencePage/>}/>

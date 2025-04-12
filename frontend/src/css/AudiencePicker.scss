@@ -288,6 +288,12 @@
     }
   }
 
+  .button {
+    padding: 10px 20px;
+    border-radius: 60px;
+    height: 48px;
+    color: var(--accent-color);
+  }
   button {
     margin-left: 10px;
     padding: 10px 20px;
@@ -370,7 +376,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  
 }
 
 .audience-button {

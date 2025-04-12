@@ -1,59 +1,72 @@
-.passwordScale
-{    
-    height: 10px;
-    transition: background-color 1s ease-in-out, width 1s ease-in-out, opacity 1s ease-in-out;
-    border-radius: 5px;
-    text-align: start;
-    margin: 0;
+.passwordScale {
+  height: 10px;
+  transition: background-color 1s ease-in-out, width 1s ease-in-out,
+    opacity 1s ease-in-out;
+  border-radius: 5px;
+  text-align: start;
+  margin: 0;
 }
 
 p.passwordSafetyAnimation {
-    font-weight: 500;
-    transition: color 1s ease-in-out;
+  font-weight: 500;
+  transition: color 1s ease-in-out;
 }
 
 p.password-safety-1 {
-    color: red;
+  color: red;
 }
 
 p.password-safety-2 {
-    color: yellow;
+  color: yellow;
 }
 
 p.password-safety-3 {
-    color: green;
+  color: green;
 }
 
-.strength-0{
-    background-color: red;
-    opacity: 0;
+.strength-0 {
+  background-color: red;
+  opacity: 0;
 }
-.strength-1{
-    opacity: 1;
-    background-color: red;
+.strength-1 {
+  opacity: 1;
+  background-color: red;
 }
 
-.strength-2{ 
-    opacity: 1;
-   
-    background-color: yellow;
-}
-.strength-3{
-    opacity: 1;
+.strength-2 {
+  opacity: 1;
 
-    background-color: green;
+  background-color: yellow;
+}
+.strength-3 {
+  opacity: 1;
+
+  background-color: green;
 }
 
 .loader-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
 }
 
 .login-loader {
-    overflow: visible;
-    
-
+  overflow: visible;
+}
+.login-form,
+.register-form {
+  .btn-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.781);
+    border-radius: 60px;
+    height: 50px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.781);
+    }
+  }
 }

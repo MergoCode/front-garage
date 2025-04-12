@@ -22,14 +22,30 @@ const getTime = (pair: string) => {
     return pairToTime[parseInt(pair) - 1]
 }
 
+const isNowInGivenPairs = (pairs: string[]): boolean => {
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  
+    return pairs.some(pair => {
+      const [startStr, endStr] = pair.split(" - ");
+      const [startH, startM] = startStr.split(":").map(Number);
+      const [endH, endM] = endStr.split(":").map(Number);
+  
+      const startMinutes = startH * 60 + startM;
+      const endMinutes = endH * 60 + endM;
+  
+      return nowMinutes >= startMinutes && nowMinutes <= endMinutes;
+    });
+  };
+
 
 const AuditorySearchCard: React.FC<Props> = ({name, time, campus}) => {
     const pairs = time.map(el => getTime(el));
+    const isTaken = isNowInGivenPairs(pairs);
     return(<div className='col-10 search-card'>
         <h2 className='search-card__title'>{name}</h2>
-        <span className='search-card__status'></span>
+        <span className='search-card__status'>Статус: {!isTaken ? (<span className='search-card__taken'>Зайнята</span>) : (<span className='search-card__free'>Вільна</span>)}</span>
         <span className='search-card__campus'>{campus == "Drago" ? "Драгоманова, 50" : "Тарнавського, 107"}</span>
-
         <h2 className='search-card__title'>Вільні години:</h2>
         <p>{pairs.map(el => `\n${el}`)}</p>
     </div>)

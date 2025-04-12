@@ -75,7 +75,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
   return (
     <div className="teacher-card">
       <div className="teacher-photo">
-        <img src={teacher.photoUrl || "frontend/public/assets/people.svg"} alt={teacher.fullName} />
+        <img src="/public/assets/teacher.jpg" alt={teacher.fullName} />
       </div>
       <div className="teacher-info">
         <h3>{teacher.fullName}</h3>
@@ -83,8 +83,8 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
         <p className="position">{teacher.position}</p>
         
         <div className="rating-section">
-          <div className="your-rating">
-            <p>Ваша оцінка:</p>
+          <div className="your-rating  d-flex col-12">
+            <p className="rate">Ваша оцінка:</p>
             <StarRating 
               rating={rating} 
               onRatingChange={handleRatingChange} 
@@ -93,7 +93,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           </div>
           
           <div className="average-rating">
-            <p>Середня оцінка ({ratingCount}):</p>
+            <p >Середня оцінка ({ratingCount}):</p>
             <StarRating 
               rating={averageRating} 
               onRatingChange={() => {}} 

@@ -316,9 +316,12 @@ const AudiencePage: React.FC = () => {
               Тарнавського, 107
             </label>
           </div>
+          <a className="button" href="/search">Пошук за назвою аудиторії</a>
+          <div>
           
           <AudienceDatePicker type="Date"/>
           <button type="submit">Перевірити доступність</button>
+          </div>
         </form>
 
         {audienceData && availableAudiences && availableAudiences.length > 0 && (

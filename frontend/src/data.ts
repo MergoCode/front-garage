@@ -45,77 +45,118 @@ export const defaultValue: AudienceData = {
     ],
 };
 
+const defaultRecentNews: recentNews[] = [
+        {
+            id: 1, 
+            recent_header: "Кафедра системного проектування отримала доступ до Google Cloud Skills Boost для розвитку хмарних технологій серед студентів та викладачів",
+            recent_content: "Кафедра системного проектування факультету електроніки та комп’ютерних технологій Львівського національного університету імені Івана Франка зробила важливий крок у напрямку модернізації навчального процесу. Ця можливість з’явилась завдяки співпраці Міністерства освіти і науки України та компанії Google. ",
+        },
+        {
+            id: 2, 
+            recent_header: "Кафедра системного проектування отримала доступ до Google Cloud Skills Boost для розвитку хмарних технологій серед студентів та викладачів",
+            recent_content: "Кафедра системного проектування факультету електроніки та комп’ютерних технологій Львівського національного університету імені Івана Франка зробила важливий крок у напрямку модернізації навчального процесу. Ця можливість з’явилась завдяки співпраці Міністерства освіти і науки України та компанії Google.",
+        },
+        {
+            id: 3, 
+            recent_header: "Кафедра системного проектування отримала доступ до Google Cloud Skills Boost для розвитку хмарних технологій серед студентів та викладачів",
+            recent_content: "Кафедра системного проектування факультету електроніки та комп’ютерних технологій Львівського національного університету імені Івана Франка зробила важливий крок у напрямку модернізації навчального процесу. Ця можливість з’явилась завдяки співпраці Міністерства освіти і науки України та компанії Google.",
+        },
+    ];
 
 export const teachers = [
     {
-        "name": "Yuriy Furgala",
+      "id": 1,
+        "fullName": "Yuriy Furgala",
+        department: "Кафедра оптоелектроніки та інформаційних технологій",
         "position": "Декан of факультету електроніки та комп'ютерних технологій, Доцент",
         "email": "yuriy.furhala@lnu.edu.ua",
         "img": "https://electronics.lnu.edu.ua/wp-content/uploads/YF_2018_E-125x150.jpg"
     },
     {
-        "name": "Serhii Velhosh",
+      "id": 2,
+        "fullName": "Serhii Velhosh",
+        department: "Кафедра оптоелектроніки та інформаційних технологій",
         "position": "Доцент, Заступник декана, факультету електроніки та комп'ютерних технологій з наукової і навчально-виховної роботи ",
         "email": "serhiy.velhosh@lnu.edu.ua",
         "img": "https://electronics.lnu.edu.ua/wp-content/uploads/velgosh-125x150.jpg"
     },
     {
-        "name": "Iryna Kofliuk",
-        "position": "Асистент, Заступник декана, факультету електроніки та комп'ютерних технологій  ",
-        "email": "iryna.koflyuk@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/photo_2023-08-10_17-21-19-e1702371920380-125x150.jpg"
+      "id": 3,
+      "fullName": "Iryna Kofliuk",
+      department: "Кафедра радіоелектронних і комп'ютерних систем",
+      "position": "Асистент, Заступник декана, факультету електроніки та комп'ютерних технологій  ",
+      "email": "iryna.koflyuk@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/photo_2023-08-10_17-21-19-e1702371920380-125x150.jpg"
     },
     {
-        "name": "Mariana  Mostova ",
+      "id": 4,
+      "fullName": "Mariana  Mostova ",
+      "position": "Асистент",
+      department: "Кафедра радіоелектронних і комп'ютерних систем",
+      "email": "Mariana.Mostova@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Mostova2-125x150.jpg"
+    },
+    {
+      "id": 5,
+      "fullName": "Oleh Bordun",
+      "position": "завідувач",
+      department: "Кафедра системного проектування",
+      "email": "oleh.bordun@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/IMG_0762-125x150.jpg"
+    },
+    {
+      "id": 6,
+      "fullName": "Ivan  Karbovnyk",
+      "position": "завідувач",
+      department: "Кафедра системного проектування",
+      "email": "Ivan.Karbovnyk@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Karbovnyk-125x150.jpg"
+    },
+    {
+      "id": 7,
+      "fullName": "Ivan Khvyshchun",
+      department: "Кафедра радіофізики та комп'ютерних технологій",
+      "position": "Доцент, Lecturer at the Pedagogical College of Ivan Franko National University of Lviv ",
+      "email": "Ivan.Khvyshchun@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Фото-ХІО-125x150.jpg"
+    },
+    {
+      "id": 8,
+      "fullName": "Mykhailo  Rusyniak ",
+      "position": "Доцент",
+      department: "Кафедра радіофізики та комп'ютерних технологій",
+      "email": "mykhailo.rusyniak@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/RMO_photo3x4-125x150.jpg"
+    },
+    {
+      "id": 9,
+      "fullName": "Rostyslav   Romanyshyn",
+      "position": "Доцент",
+      department: "Кафедра радіофізики та комп'ютерних технологій",
+      "email": "rostyslav.romanyshyn@lnu.edu.ua",
+      "img": "https://files.nas.gov.ua/photo/PersonalSite/KS/161027162647707-804.jpg"
+    },
+    {
+      "id": 10,
+      "fullName": "Yaroslav Shmyhelskyy ",
+      "position": "Асистент",
+      department: "Кафедра радіофізики та комп'ютерних технологій",
+      "email": "Yaroslav.Shmyhelskyy@lnu.edu.ua",
+      "img": "https://science.lpnu.ua/sites/default/files/styles/author_s_photo_paper_/public/authorspaper/27228/shmehelskyy.png?itok=1Uvf0uXr"
+    },
+    {
+      "id": 11,
+      "fullName": "Oleh Kaskun",
+      "position": "Асистент",
+      department: "Кафедра системного проектування",
+      "email": "oleh.kaskun@lnu.edu.ua",
+      "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Rysunok3-1-125x150.png"
+    },
+    {
+      "id": 12,
+        "fullName": "Oleksandr Haliatkin",
         "position": "Асистент",
-        "email": "Mariana.Mostova@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Mostova2-125x150.jpg"
-    },
-    {
-        "name": "Oleh Bordun",
-        "position": "завідувач",
-        "email": "oleh.bordun@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/IMG_0762-125x150.jpg"
-    },
-    {
-    "name": "Ivan  Karbovnyk",
-    "position": "завідувач",
-    "email": "Ivan.Karbovnyk@lnu.edu.ua",
-    "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Karbovnyk-125x150.jpg"
-    },
-    {
-        "name": "Ivan Khvyshchun",
-        "position": "Доцент, Lecturer at the Pedagogical College of Ivan Franko National University of Lviv ",
-        "email": "Ivan.Khvyshchun@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Фото-ХІО-125x150.jpg"
-    },
-    {
-        "name": "Mykhailo  Rusyniak ",
-        "position": "Доцент",
-        "email": "mykhailo.rusyniak@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/RMO_photo3x4-125x150.jpg"
-    },
-    {
-        "name": "Rostyslav   Romanyshyn",
-        "position": "Доцент",
-        "email": "rostyslav.romanyshyn@lnu.edu.ua",
-        "img": "https://files.nas.gov.ua/photo/PersonalSite/KS/161027162647707-804.jpg"
-    },
-    {
-        "name": "Yaroslav Shmyhelskyy ",
-        "position": "Асистент",
-        "email": "Yaroslav.Shmyhelskyy@lnu.edu.ua",
-        "img": "https://science.lpnu.ua/sites/default/files/styles/author_s_photo_paper_/public/authorspaper/27228/shmehelskyy.png?itok=1Uvf0uXr"
-    },
-    {
-        "name": "Oleh Kaskun",
-        "position": "Асистент",
-        "email": "oleh.kaskun@lnu.edu.ua",
-        "img": "https://electronics.lnu.edu.ua/wp-content/uploads/Rysunok3-1-125x150.png"
-    },
-    {
-        "name": "Oleksandr Haliatkin",
-        "position": "Асистент",
+        department: "Кафедра системного проектування",
         "email": "",
         "img": "https://electronics.lnu.edu.ua/wp-content/uploads/53308943_1989460384506876_2902070064301735936_n-125x150.jpg"
     }

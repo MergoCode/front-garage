@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 interface Fields {
     ПІБ: string;
-    курс: string;
-    група: string;
-    форма_здобуття_освіти: string;
-    факультет: string;
-    телефон: string;
+    Курс: string;
+    Група: string;
+    "Форма здобуття освіти": string;
+    Факультет: string;
+    Телефон: string;
 }
 
 const CreateDocumentPage: React.FC = () => {
@@ -18,11 +18,11 @@ const CreateDocumentPage: React.FC = () => {
     const [selectedTemplate, setSelectedTemplate] = useState('');
     const [fields, setFields] = useState<Fields>({
         ПІБ: '',
-        курс: '',
-        група: '',
-        форма_здобуття_освіти: '',
-        факультет: '',
-        телефон: ''
+        Курс: '',
+        Група: '',
+        "Форма здобуття освіти": '',
+        Факультет: '',
+        Телефон: ''
     });
 
     const API_URL = 'http://localhost:5000';
@@ -35,7 +35,7 @@ const CreateDocumentPage: React.FC = () => {
         try {
             const response = await fetch(`${API_URL}/templates`);
             const data = await response.json();
-            setTemplates(data);
+            setTemplates(data.map(el => el.split(".")[0].trim()));
         } catch (err) {
             toast.error("Помилка при завантаженні шаблонів", {
                 className: "toast-error",
@@ -102,7 +102,7 @@ const CreateDocumentPage: React.FC = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    template: selectedTemplate,
+                    template: selectedTemplate + ".docx",
                     fields,
                     format
                 })
@@ -137,11 +137,11 @@ const CreateDocumentPage: React.FC = () => {
     const clearFields = () => {
         setFields({
             ПІБ: '',
-            курс: '',
-            група: '',
-            форма_здобуття_освіти: '',
-            факультет: '',
-            телефон: ''
+            "Курс": '',
+            Група: '',
+            "Форма здобуття освіти": '',
+            Факультет: '',
+            Телефон: ''
         });
         setSelectedTemplate('');
     };
@@ -164,7 +164,7 @@ const CreateDocumentPage: React.FC = () => {
             </div>
             <div className="body-block">
             <div className="create-doc__content">
-            <div className="section">
+            <div className="section choose-block">
                 <h2>Вибір шаблону</h2>
                 <select value={selectedTemplate} onChange={e => setSelectedTemplate(e.target.value)} className="temp-select">
                     <option value="">-- Оберіть шаблон --</option>
@@ -179,9 +179,8 @@ const CreateDocumentPage: React.FC = () => {
                 <h2>Дані для заповнення</h2>
                 {Object.keys(fields).map(key => (
                     <div key={key} className="input-label-block">
-                        
-                        <input id={key} value={(fields as any)[key]} className='create-doc__input' onChange={handleChange} required />
                         <label htmlFor={key}>{key}</label>
+                        <input id={key} value={(fields as any)[key]} className='create-doc__input' onChange={handleChange} required />
                     </div>
                 ))}
             </div>

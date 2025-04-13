@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import api from "../AxiosSetting";
-import { defaultTeachers } from "../data";
+import { defaultTeachers, teachers } from "../data";
 type Teacher = {
-  id: string;
+  id: number;
   fullName: string;
+  email: string,
   department: string;
   position: string;
-  photoUrl: string;
+  img: string;
 };
 
 export function useFetchTeachers() {
@@ -31,7 +32,7 @@ export function useFetchTeachers() {
         setError(null);
       } catch (err) {
         console.log("Using default teachers data");
-        setTeachersData(defaultTeachers);
+        setTeachersData(teachers);
         setError(null);
       } finally {
         setIsLoading(false);

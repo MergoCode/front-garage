@@ -1,4 +1,3 @@
-import {useState} from "react"
 import "./App.css"
 import Carousel from "./components/Carousel";
 import "./css/LandingPage.css"
@@ -10,7 +9,7 @@ const LandingPage = () => {
   if (loading) {
     return <Loading />;
   }
-
+  
   return ( 
     <div>
       <Carousel />

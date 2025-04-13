@@ -7,7 +7,7 @@ type Teacher = {
   fullName: string;
   department: string;
   position: string;
-  photoUrl: string;
+  img: string;
 };
 
 type TeacherCardProps = {
@@ -75,7 +75,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
   return (
     <div className="teacher-card">
       <div className="teacher-photo">
-        <img src="/public/assets/teacher.jpg" alt={teacher.fullName} />
+        <img src={teacher.img} alt={teacher.fullName} />
       </div>
       <div className="teacher-info">
         <h3>{teacher.fullName}</h3>

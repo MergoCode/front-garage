@@ -30,7 +30,7 @@ const Header = () => {
                 </a>
 
                 <a className="col-2 header-link" href="/createDocx">
-                    <img src="/assets/docx.svg" height={22} alt='Згенерувати документ'></img>Згенерувати документ
+                    <img src="/assets/docx.svg" height={22} alt='Згенерувати документ'></img>Документи
                 </a>
 
                 <a className="col-2 header-link" onClick={()=> navigate('/audience-picker')}>
@@ -74,7 +74,7 @@ const Header = () => {
                                 navigate('/login-register');
                               }}
                             >
-                              Log out
+                              Вийти
                             </a>
                         </div>
                     )}

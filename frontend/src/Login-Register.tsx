@@ -186,9 +186,12 @@ const LoginRegister: React.FC = () => {
                 username: data.username,
                 password: data.password
             });
+            
             if (response.data.access) {
                 sessionStorage.setItem("accessToken", response.data.access);
                 sessionStorage.setItem("refreshToken", response.data.refresh);
+                localStorage.setItem("username", username);
+                localStorage.setItem("email", "viktor.nikitov@lnu.edu.ua");
                 navigate("/home");
             }
         } catch (err: any) {

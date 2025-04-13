@@ -23,7 +23,6 @@ const AudienceDatePicker: React.FC<DatePickerType> = ({ type }) => {
     "5 пара",
     "6 пара",
     "7 пара",
-    "8 пара",
   ];
   const togglePicker = (e: React.MouseEvent) => {
     e.preventDefault(); 

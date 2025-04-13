@@ -1,13 +1,18 @@
 .personal-ws__container
     display: flex
     width: 100%
-    height: 100vh
+    height: 100%
     flex-direction: column
     align-items: center
     .personal-ws__information
         display: flex
+        width: 70%
     .user-pfp 
         height: 40vh
+    .user-text-info
+        text-align: start
+        margin-left: 20px
+        color: #b875c5
     .personal-ws__title
         text-align: center
         width: 30%
@@ -18,10 +23,44 @@
         background-color:  #b878c5
         .personal-ws__title-head
             margin: 0 !important
+    .personal-buttons
+        display: flex
+        flex-direction: column
+        width: 60%
     .personal-btn
         background-color: #b778c5
         color: #fff
         padding: 10px 15px
         border-radius: 20px
         border: none
-
+        margin: 5px 0
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out
+        &:hover
+            color: #b778c5
+            background-color: #fff
+    .user-status
+        font-size: 20px
+    .user-more-info
+        font-size: 20px
+    .personal-ws__au-title
+        margin-top: 30px
+        width: 70%
+        text-align: start
+    .taken-au
+        color: #b875c5
+.personal-ws__auditories
+    margin-bottom: 30px
+    margin-top: 10px
+    display: flex
+    justify-content: space-between
+    width: 70%
+.personal-booked-audience
+    color: #b875c5
+    width: 30%
+    display: flex
+    justify-content: space-between
+    flex-direction: column
+    background-color: #fff
+    padding: 25px
+    border-radius: 40px
+    aspect-ratio: 1/1

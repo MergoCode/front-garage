@@ -35,6 +35,7 @@ type BookingData = {
   bookedBy: string;
   name: string;
   date: string;
+  booked_by_user: string | null;
 };
 
 // Map pair numbers to time slots
@@ -249,6 +250,7 @@ const AudiencePage: React.FC = () => {
         bookedBy,
         name,
         date: selectedDate.toISOString(),
+        booked_by_user: localStorage.getItem("username")
       };
 
       const updatedBookings = [...bookings, newBooking];
@@ -317,7 +319,7 @@ const AudiencePage: React.FC = () => {
           <div>
           
           <AudienceDatePicker type="Date"/>
-          <button type="submit">Перевірити доступність</button>
+          <button type="submit" className="check-aval">Перевірити доступність</button>
           </div>
         </form>
 
@@ -421,7 +423,7 @@ const AudiencePage: React.FC = () => {
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
             <div className="modal-actions">
-              <button onClick={handleModalSubmit} disabled={!selectedTime || !bookedBy || !name}>
+              <button onClick={handleModalSubmit} disabled={!selectedTime || !bookedBy || !name} className="check-aval">
                 Підтвердити
               </button>
               <button onClick={() => setShowModal(false)}>Скасувати</button>

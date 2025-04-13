@@ -29,13 +29,8 @@ const Header = () => {
                     <img src="/assets/home-icon.svg" alt='Головна сторінка'></img>Головна сторінка
                 </a>
 
-<<<<<<< HEAD
-                <a className="col-2 header-link" href="#" onClick={() => navigate("/createDocx")}>
-                    <img src="/assets/schedule-icon.svg" alt='Документи'></img>Документи
-=======
                 <a className="col-2 header-link" href="/createDocx">
                     <img src="/assets/docx.svg" height={22} alt='Згенерувати документ'></img>Згенерувати документ
->>>>>>> e5b23e3b860fb8f8cffcfc198332e8bddc6292b5
                 </a>
 
                 <a className="col-2 header-link" onClick={()=> navigate('/audience-picker')}>

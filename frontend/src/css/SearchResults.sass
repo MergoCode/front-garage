@@ -1,0 +1,82 @@
+
+.sr-head-block 
+    width: 100%
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center   
+    .search-results-title
+        color: #b875c5
+        font-style: bold
+        width: 100%
+        justify-content: center
+        display: flex
+        margin: 15px 0
+    .sr-title-underline
+        background:  #b875c5
+        width: 21%
+        height: 8px
+        border-radius: 40px
+.search-results-container
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 20px
+    height: 100%
+
+    .search-card
+        width: 5/6vh
+        padding: 20px 20px
+        display: flex !important
+        justify-content: space-between
+        background-color: #fff
+        margin: 10px 0
+        border-radius: 40px
+        color: #b875c5
+        box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25)
+        .search-card-left
+            width: 50%
+            display: flex
+            flex-direction: column
+            justify-content: space-evenly
+        .search-card-right
+            width: 20%
+            text-align: center
+            display: flex
+            justify-content: center
+            flex-direction: column
+            .free-hours
+                justify-content: center
+                display: flex
+                flex-direction: column
+            .free-hours span
+                width: 100%
+            
+
+.no-res-div
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+    flex-direction: column
+    height: 50vh
+    .no-results
+        color: #b875c5
+    .no-results-btn
+        color: #fff
+        background-color: #b875c5
+        padding: 10px 15px
+        border: none
+        border-radius: 25px
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out
+        &:hover
+            background-color: #fff
+            color: #b875c5
+
+
+.search-card__taken
+    color: red
+    
+.search-card__free
+    color: #1de434

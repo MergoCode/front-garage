@@ -1,12 +1,9 @@
 // index.tsx або app.tsx (залежно від структури)
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import "../css/CreateDocument.sass";
-=======
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
->>>>>>> e5b23e3b860fb8f8cffcfc198332e8bddc6292b5
 interface Fields {
     ПІБ: string;
     курс: string;
@@ -151,10 +148,6 @@ const CreateDocumentPage: React.FC = () => {
 
     return (
         <div>
-<<<<<<< HEAD
-            <div className="create-doc__head" style={{ textAlign: 'center', marginBottom: 30 }}>
-                <div className="create-doc__title-cont"><h1>Допомога з документами</h1></div>
-=======
              <ToastContainer
     position="top-center"
     autoClose={5000} // Час, після якого повідомлення закривається
@@ -169,7 +162,6 @@ const CreateDocumentPage: React.FC = () => {
             <div className="header" style={{ textAlign: 'center', marginBottom: 30 }}>
                 <h1>Генератор документів</h1>
                 <p>Заповніть поля та оберіть шаблон для генерації документу</p>
->>>>>>> e5b23e3b860fb8f8cffcfc198332e8bddc6292b5
             </div>
             <div className="body-block">
             <div className="create-doc__content">

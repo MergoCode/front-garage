@@ -22,6 +22,26 @@ type SearchResults = {
     
 }
 
+type NewsItem = {
+    title: string;
+    content: string;
+    image: string;
+  };
+  
+  type News = {
+    news: NewsItem[];
+    setNews: (payload: NewsItem) => void;
+  };
+  
+  export const useCreateNewsStore = create<News>((set) => ({
+    news: [],
+    setNews: (payload: NewsItem) => {
+      set((state) => ({
+        news: [...state.news, payload],
+      }));
+    },
+  }));
+
 export const useSearchResultsStore = create<SearchResults>((set) => ({
     data: [],
     error: null,

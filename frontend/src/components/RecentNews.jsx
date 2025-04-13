@@ -72,7 +72,7 @@ const RecentNews = () => {
                             <p className="news__paragraph col-11">{news.recent_content}</p>
                         </div>
                         <div className="dateInfo__row mb-2">
-                            <p className="news__date">30.12.2024 | 11:39</p>
+                            <p className="news__date">{(news.id == 1) ? "20.02.2025 || 11:40" : (news.id == 2 ? "23.01.2025 || 17:34" : (news.id == 3 ? "13.04.2025 || 12:02" : "14.08.2024 || 21:01")) }</p>
                             <a href="" className="news__readMore"
                                                       
                                >Читати далі...</a>

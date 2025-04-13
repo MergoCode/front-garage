@@ -14,14 +14,19 @@
 .body-block
     display: flex
     justify-content: center
-    height: 70vh
+    height: 100% 
 .create-doc__content
     background-color: #fff
     width: 80%
     height: 90%
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
     border-radius: 50px
     padding: 20px 20px
     color: #b875c5
+    margin-bottom: 30px
     box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.25)
     .create-doc__input
         color: #b875c5
@@ -29,6 +34,8 @@
 .temp-select
     border-radius: 20px
     color: #b875c5
+    width: 100%
+    padding: 5px
     background-color: #fff
     border: solid 1px grey
     &:focus
@@ -36,15 +43,26 @@
         outline: none
     &:active
         border: solid 1px grey
-
+.choose-block
+    width: 30%
+    text-align: center
+.section 
+    display: flex
+    justify-content: center
+    flex-direction: column
+    
 .input-label-block
-    width: 50%
+    width: 100%
+    overflow: hidden
     justify-content: space-between
+    flex-direction: column
     display: flex
     margin: 5px 0
     input
+        width: 100%
         border-radius: 20px
         border: solid 1px 
+        padding: 2px 10px
         &:focus
             outline: none
     label

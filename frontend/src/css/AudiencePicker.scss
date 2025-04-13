@@ -393,9 +393,9 @@
 
 .audience-button {
   display: inline-block;
-  background-color: #e1f5fe;
-  border: 1px solid #b3e5fc;
-  color: #0277bd;
+  background-color: #f5e1fe;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.9rem;
@@ -403,7 +403,7 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: #b3e5fc;
+    background-color: #ffffff;
     cursor: pointer;
   }
 }

@@ -16,6 +16,7 @@ header img {
 }
 
 .header-link {
+  position: relative;
   text-decoration: none;
   color: #fff;
   display: flex;
@@ -24,8 +25,8 @@ header img {
   font-size: 16px;
   justify-content: center;
   transition: all 0.3s;
-
   cursor: pointer;
+  padding: 10px;
 }
 
 .header-nav {
@@ -53,14 +54,17 @@ header img {
 .footer__links {
   text-align: center;
   flex: 1;
-
   cursor: pointer;
+  padding: 10px;
 }
 
 .footer-link {
+  transition: all 0.3s;
+  position: relative;
   margin: 0px 15px;
   text-decoration: none;
   color: #ffffff;
+  padding: 10px;
 }
 
 .footer__social-links {
@@ -121,4 +125,24 @@ header img {
 .dropdown-menu.show {
   opacity: 1;
   visibility: visible;
+}
+
+.header-link::after,
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: 3px; /* трохи нижче лінка */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.header-link:hover::after,
+.footer-link:hover::after {
+  opacity: 1;
 }

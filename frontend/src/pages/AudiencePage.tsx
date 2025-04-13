@@ -39,25 +39,23 @@ type BookingData = {
 
 // Map pair numbers to time slots
 const pairToTimeMap: Record<number, string> = {
-  1: "08:30–10:00",
-  2: "10:15–11:45",
-  3: "12:00–13:30",
-  4: "13:45–15:15",
-  5: "15:30–17:00",
-  6: "17:15–18:45",
-  7: "19:00–20:30",
-  8: "20:45–22:15"
+  1: "08:30–09:50",
+  2: "10:10–11:30",
+  3: "11:50–13:10",
+  4: "13:30–14:50",
+  5: "15:05–16:25",
+  6: "16:40–18:00",
+  7: "18:10–19:30",
 };
 
 const timeToPairMap: Record<string, number> = {
-  "08:30–10:00": 1,
-  "10:15–11:45": 2,
-  "12:00–13:30": 3,
-  "13:45–15:15": 4,
-  "15:30–17:00": 5,
-  "17:15–18:45": 6,
-  "19:00–20:30": 7,
-  "20:45–22:15": 8
+  "08:30–09:50": 1,
+  "10:10–11:30": 2,
+  "11:50–13:10": 3,
+  "13:30–14:50": 4,
+  "15:05–16:25": 5,
+  "16:40–18:00": 6,
+  "18:10–19:30": 7
 };
 
 const AudiencePage: React.FC = () => {
@@ -330,7 +328,7 @@ const AudiencePage: React.FC = () => {
             <div className="timetable-container">
               {/* Column headers with pair numbers and times */}
               <div className="pair-column">
-                {Array.from({ length: 8 }).map((_, index) => (
+                {Array.from({ length: 7 }).map((_, index) => (
                   <div key={index} className="pair-item">
                     <div className="pair-number">{index + 1} пара</div>
                     <div className="pair-time">{pairToTimeMap[index + 1]}</div>
@@ -340,7 +338,7 @@ const AudiencePage: React.FC = () => {
 
               {/* Audiences for each pair */}
               <div className="audiences-column">
-                {Array.from({ length: 8 }).map((_, pairIndex) => (
+                {Array.from({ length: 7 }).map((_, pairIndex) => (
                   <div key={pairIndex} className="audiences-row">
                     {availableAudiences
                       .filter((aud) => aud.audienceFreePairs.includes(pairIndex + 1))

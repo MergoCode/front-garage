@@ -19,7 +19,7 @@ export const defaultValue: AudienceData = {
     audiences: [
         {
             audienceName: "201 ауд.",
-            audienceFreePairs: [1, 2, 3, 8],
+            audienceFreePairs: [1, 2, 3, 6],
             campus: "Drago",
         },
         {
@@ -29,17 +29,17 @@ export const defaultValue: AudienceData = {
         },
         {
             audienceName: "203 ауд.",
-            audienceFreePairs: [2, 5, 7, 8],
+            audienceFreePairs: [2, 5, 6, 7],
             campus: "Drago",
         },
         {
             audienceName: "104 ауд.",
-            audienceFreePairs: [1, 5, 6, 8],
+            audienceFreePairs: [1, 5, 6, 7],
             campus: "Tarny",
         },
         {
             audienceName: "103 ауд.",
-            audienceFreePairs: [1, 5, 7, 8],
+            audienceFreePairs: [1, 5, 6, 7],
             campus: "Tarny",
         },
     ],

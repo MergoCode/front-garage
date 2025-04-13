@@ -1,5 +1,7 @@
 // index.tsx або app.tsx (залежно від структури)
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Fields {
     ПІБ: string;
@@ -34,7 +36,9 @@ const CreateDocumentPage: React.FC = () => {
             const data = await response.json();
             setTemplates(data);
         } catch (err) {
-            alert('Помилка при завантаженні шаблонів');
+            toast.error("Помилка при завантаженні шаблонів", {
+                className: "toast-error",
+            });
         }
     };
 
@@ -57,13 +61,15 @@ const CreateDocumentPage: React.FC = () => {
                 });
                 const result = await response.json();
                 if (result.success) {
-                    alert(`Шаблон "${result.filename}" успішно завантажено!`);
+                    toast.success(`Шаблон "${result.filename}" успішно завантажено!`, {
+                        className: "toast-success",
+                    });
                     refreshTemplates();
                 } else {
                     throw new Error(result.error);
                 }
             } catch (error: any) {
-                alert(`Помилка: ${error.message}`);
+                console.log(`Помилка: ${error.message}`);
             }
         };
         input.click();
@@ -75,13 +81,17 @@ const CreateDocumentPage: React.FC = () => {
 
     const generateDocument = async (format: 'docx' | 'pdf') => {
         if (!selectedTemplate) {
-            alert('Будь ласка, оберіть шаблон!');
+            toast.error("Будь ласка, оберіть шаблон!", {
+                className: "toast-error",
+            });
             return;
         }
 
         for (const [key, value] of Object.entries(fields)) {
             if (!value.trim()) {
-                alert(`Будь ласка, заповніть поле "${key}"!`);
+            toast.error(`Будь ласка, заповніть поле "${key}"!`, {
+                className: "toast-error",
+            });
                 return;
             }
         }
@@ -113,8 +123,13 @@ const CreateDocumentPage: React.FC = () => {
             a.click();
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
+            toast.success(`Документ успішно згенеровано!`, {
+                className: "toast-success",
+            });
         } catch (error: any) {
-            alert(`Помилка: ${error.message}`);
+            toast.error(`Помилка: ${error.message}`, {
+                className: "toast-error",
+            });
         }
     };
 
@@ -132,6 +147,17 @@ const CreateDocumentPage: React.FC = () => {
 
     return (
         <div>
+             <ToastContainer
+    position="top-center"
+    autoClose={5000} // Час, після якого повідомлення закривається
+    hideProgressBar={false} // Покажемо прогрес-бар
+    newestOnTop={true} // Найновіші повідомлення будуть вгорі
+    closeOnClick={true} // Закриття по кліку
+    rtl={false} // Немає RTL
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+/>
             <div className="header" style={{ textAlign: 'center', marginBottom: 30 }}>
                 <h1>Генератор документів</h1>
                 <p>Заповніть поля та оберіть шаблон для генерації документу</p>

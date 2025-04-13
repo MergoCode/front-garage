@@ -361,10 +361,16 @@ const AudiencePage: React.FC = () => {
         )}
         
         <button 
-          className="furtherInfoBtn mx-auto" 
-          onClick={()=>setShowDetailedView(!showDetailedView)}>
-          {showDetailedView} ? (Приховати детальну інформацію про аудиторії на цю дату) : (Побачити детальнішу інформацію про аудиторії на цю дату)
+            className="furtherInfoBtn mx-auto" 
+            onClick={() => setShowDetailedView(!showDetailedView)}
+            >
+            <p>
+            {showDetailedView 
+                ? "Приховати детальну інформацію про аудиторії на цю дату" 
+                : "Показати детальну інформацію про аудиторії на цю дату"}
+            </p>
         </button>
+
 
         {(showDetailedView) && (
           <div className="auditory-list">

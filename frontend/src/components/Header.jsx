@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import "../css/Layout.css";
 import { useState, useRef, useEffect } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
 const Header = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
@@ -22,14 +22,15 @@ const Header = () => {
 
     return(
         <div className="header">
-            <nav className="container px-0 header-nav">
+            <ToastContainer />
+            <nav className="container px-0 py-2 header-nav">
 
                 <a className="col-2 header-link" href="#" onClick={() => navigate("/home")}>
                     <img src="/assets/home-icon.svg" alt='Головна сторінка'></img>Головна сторінка
                 </a>
 
-                <a className="col-2 header-link" href="#">
-                    <img src="/assets/schedule-icon.svg" alt='Розклад'></img>Розклад
+                <a className="col-2 header-link" href="/createDocx">
+                    <img src="/assets/docx.svg" height={22} alt='Згенерувати документ'></img>Згенерувати документ
                 </a>
 
                 <a className="col-2 header-link" onClick={()=> navigate('/audience-picker')}>
@@ -68,9 +69,9 @@ const Header = () => {
                               href="#" 
                               onClick={() => {
                                 sessionStorage.removeItem("accessToken");
-                                alert('Log out succesfully')
-                                navigate('/login-register');
+                                toast.success('Ви вийшли з системи успішно')
                                 setIsDropdownOpen(false);
+                                navigate('/login-register');
                               }}
                             >
                               Log out

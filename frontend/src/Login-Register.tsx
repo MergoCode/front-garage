@@ -278,6 +278,11 @@ const LoginRegister: React.FC = () => {
                                         <img className="px-2" src="public/assets/google-icon.svg" height={24} />
                                         Log In with Google
                                     </a>
+                                    <a className="btn btn-block mb-1" href="http://localhost:8000/api/auth/google/" role="button">
+                                        <i className="fab fa-google"></i>
+                                        <img className="px-2" src="public/assets/365.svg" height={24} />
+                                        Log In with Microsoft 365
+                                    </a>
                                     
                                     <hr className="col-7" />
                             {fetchError && <div className="error-block top-0"><p className="Error-p">{fetchError}</p></div>}
@@ -286,7 +291,7 @@ const LoginRegister: React.FC = () => {
                                 type="text"
                                 placeholder="Username"
                                 {...register("username")}
-                                className="login-register-input col-4 mb-1 mt-4"
+                                className="login-register-input col-4 mb-1 mt-2"
                             />
                             {errors.username && <p className="mb-1">⚠︎ {errors.username.message}</p>}
                             
@@ -320,12 +325,17 @@ const LoginRegister: React.FC = () => {
                                         <img className="px-2" src="public/assets/google-icon.svg" height={24} />
                                         Sign In with Google
                                     </a>
+                                    <a className="btn btn-block mb-1" href="http://localhost:8000/api/auth/google/" role="button">
+                                        <i className="fab fa-google"></i>
+                                        <img className="px-2" src="public/assets/365.svg" height={24} />
+                                        Sign In with Microsoft 365
+                                    </a>
                                     <hr className="col-7 mb-4" />
                             <input
                                 type="text"
                                 placeholder="Username"
                                 {...register("username", { required: "Username is required" })}
-                                className="login-register-input col-4 mb-1  mt-4"
+                                className="login-register-input col-4 mb-1  mt-2"
                             />
                             {errors.username && <p className="mb-1 col-12">⚠︎ {errors.username.message}</p>}
 

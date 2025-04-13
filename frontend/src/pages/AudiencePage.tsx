@@ -79,7 +79,7 @@ const AudiencePage: React.FC = () => {
   const setCampus = useDatePickerStore((state) => state.setCampus);
   const selectedCampus = watch("campus");
   const selectedDate = useDatePickerStore((state) => state.date);
-  
+  const token = sessionStorage.getItem('accessToken');
   useEffect(() => {
     if (selectedCampus) {
       setCampus(selectedCampus);
@@ -363,15 +363,19 @@ const AudiencePage: React.FC = () => {
             className="furtherInfoBtn mx-auto" 
             onClick={() => setShowDetailedView(!showDetailedView)}
             >
-            <p>
-            {showDetailedView 
-                ? "Приховати детальну інформацію про аудиторії на цю дату" 
-                : "Показати детальну інформацію про аудиторії на цю дату"}
-            </p>
+              {token && (
+                            <p>
+              
+                            {showDetailedView 
+                                ? "Приховати детальну інформацію про аудиторії на цю дату" 
+                                : "Показати детальну інформацію про аудиторії на цю дату"}
+                            </p>
+              )}
+
         </button>
 
 
-        {(showDetailedView) && (
+        {(showDetailedView) && token && (
           <div className="auditory-list">
             <h4>Детальна інформація про аудиторії</h4>
             {searchPerformed ? (
@@ -405,7 +409,7 @@ const AudiencePage: React.FC = () => {
         )}
       </div>
 
-      {showModal && selectedAuditory && (
+      {showModal && selectedAuditory && token && (
         <div className="modal-overlay">
           <div className="modal">
             <h4>Бронювання аудиторії {selectedAuditory.number}</h4>

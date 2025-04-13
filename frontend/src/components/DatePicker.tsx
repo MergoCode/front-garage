@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "../css/AudiencePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDatePickerStore } from "../zustandStore/store";
+import "../css/DatePickerCal.sass";
 interface DatePickerType {
   type: "Date" | "Time";
 }
@@ -60,7 +61,7 @@ const AudienceDatePicker: React.FC<DatePickerType> = ({ type }) => {
 
   return (
     <>
-      <button className="date-picker-button" onClick={togglePicker}>
+      <button className="check-aval" onClick={togglePicker}>
         {type == "Date" ? "Дата" : "Час"}
       </button>
       {type == "Date"
@@ -72,6 +73,9 @@ const AudienceDatePicker: React.FC<DatePickerType> = ({ type }) => {
                 inline
                 minDate={new Date(2023, 11, 31)}
                 dropdownMode="select"
+                calendarClassName="date-picker-calendar"
+                todayButton="Вибрати"
+
               />
             </div>
           )

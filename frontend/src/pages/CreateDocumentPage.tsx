@@ -159,9 +159,8 @@ const CreateDocumentPage: React.FC = () => {
     draggable
     pauseOnHover
 />
-            <div className="header" style={{ textAlign: 'center', marginBottom: 30 }}>
-                <h1>Генератор документів</h1>
-                <p>Заповніть поля та оберіть шаблон для генерації документу</p>
+            <div className="create-doc__head" style={{ textAlign: 'center', marginBottom: 30 }}>
+                <h1 className="create-doc__title-cont">Генератор документів</h1>
             </div>
             <div className="body-block">
             <div className="create-doc__content">

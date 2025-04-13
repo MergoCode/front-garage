@@ -360,10 +360,22 @@ const AudiencePage: React.FC = () => {
         )}
         
         <button 
+<<<<<<< HEAD
           className="furtherInfoBtn mx-auto" 
           onClick={()=>setShowDetailedView(!showDetailedView)}>
           {showDetailedView ? ("Приховати детальну інформацію про аудиторії на цю дату") : ("Побачити детальнішу інформацію про аудиторії на цю дату")}
+=======
+            className="furtherInfoBtn mx-auto" 
+            onClick={() => setShowDetailedView(!showDetailedView)}
+            >
+            <p>
+            {showDetailedView 
+                ? "Приховати детальну інформацію про аудиторії на цю дату" 
+                : "Показати детальну інформацію про аудиторії на цю дату"}
+            </p>
+>>>>>>> e5b23e3b860fb8f8cffcfc198332e8bddc6292b5
         </button>
+
 
         {(showDetailedView) && (
           <div className="auditory-list">

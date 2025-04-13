@@ -7,11 +7,11 @@
   --background-color: #cee5f2;
   --accent-color: #b878c5;
   --main-font: "Poppins", sans-serif;
-  font-family: var(--main-font);
   background-color: var(--background-color);
 }
 * {
   box-sizing: border-box;
+  font-family: "Comfortaa";
   overflow-y: hidden;
 }
 ul {

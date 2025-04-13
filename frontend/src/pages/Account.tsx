@@ -51,6 +51,7 @@ function Account() {
                   sessionStorage.removeItem("accessToken");
                   navigate("/login-register")
                 }}>Вийти з Акаунту</button>
+                {role != "студент" ? <button className="personal-btn">Створити новину</button> : ""}
               </div>
             </div>
           </div>
@@ -58,7 +59,7 @@ function Account() {
             <h1 className="taken-au">Заброньовані Аудиторії</h1>
           </div>
           <div className="personal-ws__auditories">
-            {bookedbyUser.length > 0 ? (
+            {bookedbyUser.length  > 0 && role != "студент" ? (
               bookedbyUser.map((el) => <div className="personal-booked-audience">
                 <div className="ps-booked-block">
                     <h2 className="ps-booked-head">{el.number} ауд.</h2>

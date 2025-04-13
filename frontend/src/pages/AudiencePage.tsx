@@ -258,7 +258,6 @@ const AudiencePage: React.FC = () => {
 
       localStorage.setItem("audienceBookings", JSON.stringify(updatedBookings));
 
-      // Update auditories list only if detailed view is shown
       if (showDetailedView) {
         setAuditories((prevAuditories) => {
           return prevAuditories.map((auditory) => {
@@ -363,7 +362,7 @@ const AudiencePage: React.FC = () => {
         <button 
           className="furtherInfoBtn mx-auto" 
           onClick={()=>setShowDetailedView(!showDetailedView)}>
-          {showDetailedView} ? (Приховати детальну інформацію про аудиторії на цю дату) : (Побачити детальнішу інформацію про аудиторії на цю дату)
+          {showDetailedView ? ("Приховати детальну інформацію про аудиторії на цю дату") : ("Побачити детальнішу інформацію про аудиторії на цю дату")}
         </button>
 
         {(showDetailedView) && (

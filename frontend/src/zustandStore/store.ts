@@ -13,6 +13,7 @@ type DateAudienceStore = {
 }
 
 
+
 type SearchResults = {
     data: object[],
     setData: (payload: object[]) => void,

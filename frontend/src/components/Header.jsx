@@ -28,8 +28,8 @@ const Header = () => {
                     <img src="/assets/home-icon.svg" alt='Головна сторінка'></img>Головна сторінка
                 </a>
 
-                <a className="col-2 header-link" href="#">
-                    <img src="/assets/schedule-icon.svg" alt='Розклад'></img>Розклад
+                <a className="col-2 header-link" href="#" onClick={() => navigate("/createDocx")}>
+                    <img src="/assets/schedule-icon.svg" alt='Документи'></img>Документи
                 </a>
 
                 <a className="col-2 header-link" onClick={()=> navigate('/audience-picker')}>

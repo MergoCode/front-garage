@@ -1,6 +1,6 @@
 // index.tsx або app.tsx (залежно від структури)
 import React, { useEffect, useState } from 'react';
-
+import "../css/CreateDocument.sass";
 interface Fields {
     ПІБ: string;
     курс: string;
@@ -132,37 +132,39 @@ const CreateDocumentPage: React.FC = () => {
 
     return (
         <div>
-            <div className="header" style={{ textAlign: 'center', marginBottom: 30 }}>
-                <h1>Генератор документів</h1>
-                <p>Заповніть поля та оберіть шаблон для генерації документу</p>
+            <div className="create-doc__head" style={{ textAlign: 'center', marginBottom: 30 }}>
+                <div className="create-doc__title-cont"><h1>Допомога з документами</h1></div>
             </div>
-
+            <div className="body-block">
+            <div className="create-doc__content">
             <div className="section">
                 <h2>Вибір шаблону</h2>
-                <select value={selectedTemplate} onChange={e => setSelectedTemplate(e.target.value)}>
+                <select value={selectedTemplate} onChange={e => setSelectedTemplate(e.target.value)} className="temp-select">
                     <option value="">-- Оберіть шаблон --</option>
                     {templates.map(tpl => (
                         <option key={tpl} value={tpl}>{tpl}</option>
                     ))}
                 </select>
-                <button onClick={refreshTemplates}>Оновити список</button>
-                <button onClick={uploadTemplate}>Завантажити новий шаблон</button>
+                
             </div>
 
             <div className="section">
                 <h2>Дані для заповнення</h2>
                 {Object.keys(fields).map(key => (
-                    <div key={key}>
-                        <label htmlFor={key}>{key}:</label>
-                        <input id={key} value={(fields as any)[key]} onChange={handleChange} required />
+                    <div key={key} className="input-label-block">
+                        
+                        <input id={key} value={(fields as any)[key]} className='create-doc__input' onChange={handleChange} required />
+                        <label htmlFor={key}>{key}</label>
                     </div>
                 ))}
             </div>
 
             <div className="button-group" style={{ marginTop: 20, textAlign: 'center' }}>
-                <button onClick={() => generateDocument('docx')}>Згенерувати DOCX</button>
-                <button onClick={() => generateDocument('pdf')}>Згенерувати PDF</button>
-                <button onClick={clearFields}>Очистити поля</button>
+                <button onClick={() => generateDocument('docx')} className="doc-gen-btn">Згенерувати DOCX</button>
+                <button onClick={() => generateDocument('pdf')} className="doc-gen-btn">Згенерувати PDF</button>
+                <button onClick={clearFields} className="doc-gen-btn">Очистити поля</button>
+            </div>
+            </div>
             </div>
         </div>
     );

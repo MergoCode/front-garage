@@ -256,7 +256,6 @@ const AudiencePage: React.FC = () => {
 
       localStorage.setItem("audienceBookings", JSON.stringify(updatedBookings));
 
-      // Update auditories list only if detailed view is shown
       if (showDetailedView) {
         setAuditories((prevAuditories) => {
           return prevAuditories.map((auditory) => {

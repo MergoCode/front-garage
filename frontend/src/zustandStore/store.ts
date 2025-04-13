@@ -13,16 +13,25 @@ type DateAudienceStore = {
 }
 
 
+
 type SearchResults = {
     data: object[],
+    error: string | null,
     setData: (payload: object[]) => void,
+    setError: (payload: string) => void,
+    
 }
 
 export const useSearchResultsStore = create<SearchResults>((set) => ({
     data: [],
+    error: null,
     setData: (payload: object[]) => {
         set((state) => ({data: payload}));
+    },
+    setError: (payload: string) => {
+        set((state) => ({error: payload}))
     }
+
 }))
 
 export const useDatePickerStore = create<DateAudienceStore>((set) => ({

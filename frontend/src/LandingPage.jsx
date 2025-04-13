@@ -16,7 +16,8 @@ const LandingPage = () => {
       <Carousel />
       <div className="container landing-container pt-4">
         <h1 className="landing-title">Faculty of Electronics and Computer Technologies</h1>
-        <p className="landing-p" >Тут буде текст про наш факультет і цей сайт тіпа шось того треба буде придумати або просто напис</p>
+        <p className="landing-p" >"Кожен, хто перестає вчитися, старіє, не важливо, в 20 або 80 років, а будь-який інший, хто продовжує вчитися, залишається молодим. Найважливіше в житті - це зберегти мозок молодим." 
+        © Генрі Форд</p>
         <a href="#explore" className=" primary-btn" role="button">explore us</a>
         <ul id="explore" className="icons-row">
           <li>
